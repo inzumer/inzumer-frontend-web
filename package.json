@@ -16,7 +16,7 @@
     "next": "15.5.26",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-i18next": "^15.4.1",
+    "react-i18next": "^17.0.15",
     "resend": "^4.3.0"
   },
   "devDependencies": {
