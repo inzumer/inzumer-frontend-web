@@ -81,7 +81,7 @@ describe('ProjectShowcase', () => {
     await user.click(screen.getByRole('tab', { name: 'Belo' }));
     await user.click(screen.getByRole('button', { name: 'Ver proyecto' }));
 
-    expect(screen.getByRole('dialog', { name: 'Belo' })).toBeInTheDocument();
+    expect(screen.getByRole('dialog', { name: /Belo$/ })).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Cerrar proyecto' }));
     await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
   });

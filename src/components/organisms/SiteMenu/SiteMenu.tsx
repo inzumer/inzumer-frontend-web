@@ -50,7 +50,8 @@ export const SiteMenu = ({ links, language, cv, labels }: SiteMenuProps) => {
         onClose={close}
         title={labels.title}
         titleClassName="sr-only"
-        className="max-w-none border-0 px-[calc(2.4rem_+_env(safe-area-inset-left))] shadow-none md:px-[12%]"
+        size="full"
+        className="px-[calc(2.4rem_+_env(safe-area-inset-left))] md:px-[12%]"
       >
         {/* The panel covers the screen, so this corner is the hamburger's. */}
         <Button

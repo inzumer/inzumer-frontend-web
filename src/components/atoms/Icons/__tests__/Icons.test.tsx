@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import { ContrastIcon, GitHubIcon, isServiceIconName, SERVICE_ICONS } from '../Icons';
+import { ContrastIcon, isServiceIconName, SERVICE_ICONS } from '../Icons';
 
 describe('Icons', () => {
   it('should draw every icon as a decorative SVG in the current color', () => {
-    for (const Icon of [...Object.values(SERVICE_ICONS), ContrastIcon, GitHubIcon]) {
+    for (const Icon of [...Object.values(SERVICE_ICONS), ContrastIcon]) {
       const { container, unmount } = render(<Icon width={24} />);
       const svg = container.querySelector('svg');
 

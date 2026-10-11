@@ -13,10 +13,10 @@ describe('ProjectDialog', () => {
   it('should show the whole project in a bottom sheet on phones', () => {
     render(<ProjectDialog project={belo} open onClose={vi.fn()} labels={dialogLabels} />);
 
-    const dialog = screen.getByRole('dialog', { name: 'Belo' });
+    const dialog = screen.getByRole('dialog', { name: /Belo$/ });
 
     expect(dialog.className).toContain('rounded-t-[2.4rem]');
-    expect(screen.getByRole('heading', { level: 2, name: 'Belo' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /Belo$/ })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: 'Belo title' })).toBeInTheDocument();
     expect(screen.getByText('Belo body')).toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Belo screen' })).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe('ProjectDialog', () => {
       />,
     );
 
-    expect(screen.getByRole('dialog', { name: 'Belo' }).className).toContain('max-w-[1080px]');
+    expect(screen.getByRole('dialog', { name: /Belo$/ }).className).toContain('max-w-[1080px]');
     expect(screen.getByRole('link', { name: /Visitar belo.app/ })).toHaveAttribute(
       'href',
       'https://belo.app',
