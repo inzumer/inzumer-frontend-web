@@ -1,7 +1,6 @@
 import { useState, type SyntheticEvent } from 'react';
 import { Button, Input, RichText, Textarea } from '@inzumer/ui-library';
 import { SiteLoader } from '@components/molecules/SiteLoader';
-import { trackEvent } from '@services/analytics';
 import { sendContact } from '@services/contact';
 import { invalidContactFields, trackingId, type ContactField, type Locale } from '@utils';
 
@@ -65,8 +64,6 @@ export const ContactForm = ({
     setStatus('sending');
     const sent = await send(input);
     setStatus(sent ? 'success' : 'error');
-    // GA4's lead event; it does nothing without consent.
-    trackEvent(sent ? 'generate_lead' : 'contact_error', { form: 'contact' });
 
     if (sent) {
       formElement.reset();
@@ -126,7 +123,13 @@ export const ContactForm = ({
       >
         {status === 'sending' ? labels.sending : labels.send}
       </Button>
-      <RichText role="status" variant="p3" className="min-h-[2.4rem] text-(--text-secondary)">
+      {/* Its id names the result (contact-status-success, -error, -invalid) for Tag Manager. */}
+      <RichText
+        id={trackingId('contact', 'status', status)}
+        role="status"
+        variant="p3"
+        className="min-h-[2.4rem] text-(--text-secondary)"
+      >
         {message ?? ''}
       </RichText>
     </form>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { CookieConsent, type CookieChoices } from '@inzumer/ui-library';
 import { CONSENT_CATEGORIES } from '@constants';
-import { loadTagManager, revokeAnalytics, trackClicks } from '@services/analytics';
+import { loadTagManager, revokeAnalytics } from '@services/analytics';
 import { readSettings, trackingId, updateSettings } from '@utils';
 
 export interface ConsentManagerLabels {
@@ -71,7 +71,7 @@ export const ConsentManager = ({ containerId, privacyHref, labels }: ConsentMana
 
     loadTagManager(containerId);
 
-    return trackClicks();
+    return undefined;
   }, [allowed, containerId]);
 
   if (!containerId) {

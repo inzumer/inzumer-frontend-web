@@ -70,7 +70,10 @@ describe('ContactForm', () => {
       website: '',
       lang: 'es',
     });
-    expect(await screen.findByText('Mensaje enviado.')).toBeInTheDocument();
+    expect(await screen.findByText('Mensaje enviado.')).toHaveAttribute(
+      'id',
+      'contact-status-success',
+    );
     expect(screen.getByLabelText('Nombre')).toHaveValue('');
   });
 
