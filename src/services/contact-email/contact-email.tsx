@@ -1,11 +1,13 @@
 import {
-  createEmailTheme,
+  EmailBanner,
   EmailCard,
   EmailText,
+  inzumerEmailTheme,
   MessageTemplate,
   renderEmail,
+  type EmailSocialLink,
 } from '@inzumer/email';
-import { SITE_AUTHOR, SITE_URL } from '@constants';
+import { SITE_AUTHOR, SITE_URL, SOCIAL_LINKS } from '@constants';
 import { getTranslations } from '@i18n';
 import { interpolate, type ContactInput } from '@utils';
 
@@ -15,23 +17,15 @@ export interface RenderedEmail {
   text: string;
 }
 
-/** Inzumer in email: black and white, Inter with safe fallbacks. */
-const theme = createEmailTheme({
-  colors: {
-    text: '#151515',
-    textSecondary: '#525252',
-    border: '#e0e0e0',
-    link: '#151515',
-    primary: '#151515',
-    primaryText: '#f8f8f8',
-  },
-  fonts: {
-    body: "Inter, 'Helvetica Neue', Arial, sans-serif",
-    heading: "Inter, 'Helvetica Neue', Arial, sans-serif",
-  },
-  // Rounded cards; pill buttons and the header image come with inzumerEmailTheme (@inzumer/email 0.4).
-  radius: '18px',
-});
+/** The INZUMER wordmark in black over the email background, hosted with the email Storybook. */
+const HEADER_IMAGE = 'https://ui-emails.inzumer.com/brand/inzumer-header.png';
+
+const hero = <EmailBanner src={HEADER_IMAGE} alt="INZUMER, Senior Frontend Engineer" />;
+
+const social: EmailSocialLink[] = [
+  { network: 'linkedin', href: SOCIAL_LINKS.linkedin },
+  { network: 'github', href: SOCIAL_LINKS.github },
+];
 
 const brand = { name: 'INZUMER' };
 
@@ -46,12 +40,13 @@ export const renderAutoReply = async ({ name, lang }: ContactInput): Promise<Ren
       lang={lang}
       preview={t.preview}
       brand={brand}
-      theme={theme}
+      theme={inzumerEmailTheme}
+      hero={hero}
       title={t.title}
       paragraphs={[interpolate(t.greeting, { name }), t.body]}
       action={{ href: `${SITE_URL}/${lang}`, label: t.button }}
       signature={t.signature}
-      footer={{ reason: t.footer }}
+      footer={{ reason: t.footer, social }}
     />,
   );
 
@@ -74,11 +69,12 @@ export const renderNotification = async ({
       lang="es"
       preview={interpolate(t.preview, { name })}
       brand={brand}
-      theme={theme}
+      theme={inzumerEmailTheme}
+      hero={hero}
       title={t.title}
       paragraphs={[interpolate(t.from, { name, email })]}
       action={{ href: `mailto:${email}`, label: t.button }}
-      footer={{ reason: t.footer }}
+      footer={{ reason: t.footer, social }}
     >
       <EmailCard>
         {messageLines(message).map(({ key, line }) => (

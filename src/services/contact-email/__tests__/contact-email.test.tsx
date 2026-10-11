@@ -28,6 +28,14 @@ describe('contact emails', () => {
     expect(NOTIFICATION_ADDRESS).toBe('inzumer@gmail.com');
   });
 
+  it('should carry the Inzumer header and the network links', async () => {
+    const email = await renderAutoReply(input);
+
+    expect(email.html).toContain('https://ui-emails.inzumer.com/brand/inzumer-header.png');
+    expect(email.html).toContain('href="https://www.linkedin.com/in/inzumer"');
+    expect(email.html).toContain('href="https://github.com/inzumer"');
+  });
+
   it('should escape what people write', async () => {
     const email = await renderNotification({ ...input, message: '<script>alert(1)</script> hola' });
 
