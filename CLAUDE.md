@@ -41,7 +41,7 @@ Key commands (Node from `.nvmrc`, pnpm from `packageManager`):
 - **Tests**: every title starts with `should …` (enforced by `vitest/valid-title`).
 - **Imports**: path aliases (`@components`, `@constants`, `@services`, `@hooks`, `@utils`, `@i18n`,
   `@layouts/*`, `@assets/*`, `@styles/*`, `@test/*`) for anything outside the current folder.
-- **Tracking ids**: every interactive element has an id from `trackingId(scope, kind, name)`.
+- **Ids and test ids (analytics)**: every interactive element, and every result we want to count (`status` kind, e.g. `contact-status-success`), gets `{...trackingProps(scope, kind, name)}`: the same value as `id` (Tag Manager triggers read it) and `data-testid` (tests). Lib components take theirs through their id props (`buttonIds`, `closeId`, `getId`, `items[].id`) and mirror them as `data-testid`. Something without an id can't be measured: add it before shipping.
 - **Placement**: UI in `src/components` (atoms / molecules / organisms), hooks in `src/hooks`, pure
   helpers in `src/utils`, values in `src/constants`, integrations in `src/services`
   (`contact-email` is server-only: never import it from an island).

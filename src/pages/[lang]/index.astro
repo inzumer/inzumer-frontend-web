@@ -18,7 +18,7 @@ import {
   personSchema,
   projectsFor,
   projectSlug,
-  trackingId,
+  trackingProps,
   type Locale,
 } from '@utils';
 
@@ -105,7 +105,7 @@ const homeHref = localizedPath(lang, 'home');
         ))}
       </div>
       <a
-        id={trackingId('about', 'link', 'cv')}
+        {...trackingProps('about', 'link', 'cv')}
         href={`/${lang}/cv.pdf`}
         download={cv.fileName}
         class="inline-flex min-h-11 w-fit items-center gap-3 rounded-full border border-(--border-strong) px-6 text-[1.3rem] font-medium transition-colors hover:bg-(--btn-ghost-bg-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-focus) motion-reduce:transition-none"

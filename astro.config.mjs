@@ -42,7 +42,7 @@ const inlineScriptHashes = [
 const csp = {
   directives: [
     "default-src 'self'",
-    // Google Analytics, only after consent.
+    // Tag Manager and Google Analytics, only after consent.
     "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
     "img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com",
     "font-src 'self'",

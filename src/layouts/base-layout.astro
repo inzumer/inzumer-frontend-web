@@ -7,7 +7,7 @@ import { ConsentManager } from '@components/organisms/ConsentManager';
 import { PageLoader } from '@components/organisms/PageLoader';
 import { SiteMenu } from '@components/organisms/SiteMenu';
 import { SiteRail } from '@components/organisms/SiteRail';
-import { GA_MEASUREMENT_ID, OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
+import { GTM_CONTAINER_ID, OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
 import { getTranslations } from '@i18n';
 import {
   canonicalPath,
@@ -15,6 +15,7 @@ import {
   localizedPath,
   switchLocalePath,
   themeScript,
+  trackingProps,
   type Locale,
   type StructuredData,
 } from '@utils';
@@ -89,6 +90,7 @@ const sections = ['about', 'services', 'projects', 'ecosystem', 'experience', 'c
   </head>
   <body class="min-h-dvh antialiased">
     <a
+      {...trackingProps('layout', 'link', 'skip')}
       href="#main"
       class="fixed top-4 left-4 z-50 -translate-y-24 rounded-full bg-(--btn-primary-bg) px-6 py-3 text-(--btn-primary-text) focus:translate-y-0"
     >
@@ -96,7 +98,7 @@ const sections = ['about', 'services', 'projects', 'ecosystem', 'experience', 'c
     </a>
     <ConsentManager
       client:only="react"
-      measurementId={GA_MEASUREMENT_ID}
+      containerId={GTM_CONTAINER_ID}
       privacyHref={localizedPath(lang, 'privacy')}
       labels={common.cookies}
     />

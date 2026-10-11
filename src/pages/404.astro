@@ -8,7 +8,7 @@ import {
   localizedPath,
   notFoundLanguageScript,
   SITE_BASE,
-  trackingId,
+  trackingProps,
 } from '@utils';
 
 const messages = LOCALES.map((lang) => ({
@@ -41,7 +41,7 @@ const title = getTranslations(DEFAULT_LOCALE, 'not-found').title;
         {text.text}
       </RichText>
       <a
-        id={trackingId('not-found', 'link', 'home', lang)}
+        {...trackingProps('not-found', 'link', 'home', lang)}
         href={home}
         class="inline-flex min-h-11 items-center rounded-full border border-(--border-strong) px-6 text-[1.3rem] font-medium"
       >

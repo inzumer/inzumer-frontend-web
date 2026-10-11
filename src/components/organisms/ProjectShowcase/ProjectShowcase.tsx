@@ -7,7 +7,7 @@ import {
   type ProjectDetail,
   type ProjectDialogLabels,
 } from '@components/organisms/ProjectDialog';
-import { trackingId } from '@utils';
+import { trackingId, trackingProps } from '@utils';
 
 export interface ShowcaseProject extends ProjectDetail {
   summary: string;
@@ -103,6 +103,7 @@ export const ProjectShowcase = ({ title, projects, labels }: ProjectShowcaseProp
                   tabsRef.current[index] = element;
                 }}
                 id={tabId(index)}
+                data-testid={tabId(index)}
                 type="button"
                 role="tab"
                 aria-selected={selected}
@@ -166,7 +167,7 @@ export const ProjectShowcase = ({ title, projects, labels }: ProjectShowcaseProp
               ))}
             </ul>
             <button
-              id={trackingId('projects', 'button', 'view', project.slug)}
+              {...trackingProps('projects', 'button', 'view', project.slug)}
               type="button"
               aria-haspopup="dialog"
               onClick={() => setOpen(true)}

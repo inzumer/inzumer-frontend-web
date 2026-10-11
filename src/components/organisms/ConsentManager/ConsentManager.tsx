@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { CookieConsent, type CookieChoices } from '@inzumer/ui-library';
 import { CONSENT_CATEGORIES } from '@constants';
-import { disableAnalytics, loadAnalytics, trackClicks } from '@services/analytics';
-import { readSettings, trackingId, updateSettings } from '@utils';
+import { loadTagManager, revokeAnalytics } from '@services/analytics';
+import { readSettings, trackingId, trackingProps, updateSettings } from '@utils';
 
 export interface ConsentManagerLabels {
   title: string;
@@ -21,8 +21,8 @@ export interface ConsentManagerLabels {
 }
 
 export interface ConsentManagerProps {
-  /** GA4 id; without it there is nothing to consent to and the banner stays hidden. */
-  measurementId: string | undefined;
+  /** Tag Manager container; without it there is nothing to consent to and the banner stays hidden. */
+  containerId: string | undefined;
   privacyHref: string;
   labels: ConsentManagerLabels;
 }
@@ -30,14 +30,14 @@ export interface ConsentManagerProps {
 /** Opens the preferences again, e.g. from the footer link. */
 export const COOKIES_HASH = '#cookies';
 
-/** Cookie banner and preferences; Google Analytics loads only once the visitor accepts it. */
-export const ConsentManager = ({ measurementId, privacyHref, labels }: ConsentManagerProps) => {
+/** Cookie banner and preferences; Tag Manager (and GA4 in it) loads only once the visitor accepts. */
+export const ConsentManager = ({ containerId, privacyHref, labels }: ConsentManagerProps) => {
   // Client-only island (`client:only`), so the saved answer is read on the first render.
   const [consent, setConsent] = useState<CookieChoices | null>(
     () => readSettings().consent ?? null,
   );
   const [open, setOpen] = useState(() => window.location.hash === COOKIES_HASH);
-  const allowed = Boolean(measurementId && consent?.[CONSENT_CATEGORIES.analytics]);
+  const allowed = Boolean(containerId && consent?.[CONSENT_CATEGORIES.analytics]);
 
   useEffect(() => {
     const clearHash = () =>
@@ -59,22 +59,22 @@ export const ConsentManager = ({ measurementId, privacyHref, labels }: ConsentMa
   }, []);
 
   useEffect(() => {
-    if (!measurementId) {
+    if (!containerId) {
       return undefined;
     }
 
     if (!allowed) {
-      disableAnalytics(measurementId);
+      revokeAnalytics();
 
       return undefined;
     }
 
-    loadAnalytics(measurementId);
+    loadTagManager(containerId);
 
-    return trackClicks();
-  }, [allowed, measurementId]);
+    return undefined;
+  }, [allowed, containerId]);
 
-  if (!measurementId) {
+  if (!containerId) {
     return null;
   }
 
@@ -101,7 +101,7 @@ export const ConsentManager = ({ measurementId, privacyHref, labels }: ConsentMa
           <>
             {labels.description}{' '}
             <a
-              id={trackingId('cookies', 'link', 'privacy')}
+              {...trackingProps('cookies', 'link', 'privacy')}
               href={privacyHref}
               className="underline underline-offset-4"
             >
