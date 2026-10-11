@@ -123,6 +123,14 @@ new metric needs a trigger, not code; what we want to measure must have an id.
 | Navigation             | `menu-button-open`, `menu-link-<section>`, `menu-link-language-<lang>`, `rail-link-language-<lang>`, `rail-button-theme`                                 |
 | Consent                | `cookies-button-accept`, `cookies-button-reject`, `cookies-button-customize`, `footer-link-cookies`                                                      |
 
+## Monitoring (Sentry)
+
+`@sentry/astro` reports errors from the browser and from `/api/contact` (a failed delivery or a
+missing Resend key are sent with an `area` tag), plus Web Vitals and response times (20% of
+visits). No Session Replay and no personal data, so it needs no consent. Without
+`PUBLIC_SENTRY_DSN` it stays off; `SENTRY_ORG`, `SENTRY_PROJECT` and `SENTRY_AUTH_TOKEN` (only in
+Vercel) upload the source maps so stack traces point at our code.
+
 ## Contact emails
 
 `/api/contact` validates the form, drops bots (honeypot) and floods (5 per address every 10

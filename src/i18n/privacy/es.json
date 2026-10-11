@@ -16,6 +16,10 @@
       "text": "Solo si lo aceptas: páginas visitadas, clics en botones y enlaces, dispositivo y ubicación aproximada, para ver qué proyectos interesan. Usa cookies de Google (_ga), sin señales publicitarias. Puedes retirarlo cuando quieras."
     },
     {
+      "title": "Errores",
+      "text": "Si algo falla en el sitio o en el formulario de contacto, Sentry recibe el error técnico, la página y el navegador, sin tu nombre, tu correo ni tu mensaje, y sin cookies. Así encuentro y arreglo los problemas."
+    },
+    {
       "title": "Formulario de contacto",
       "text": "Tu nombre, tu correo y tu mensaje me llegan por email a través de Resend, solo para responderte. También recibes una confirmación. El sitio no guarda ninguna copia."
     },
