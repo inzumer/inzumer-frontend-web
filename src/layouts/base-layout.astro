@@ -29,6 +29,7 @@ interface Props {
 
 const { lang, title, description, structuredData = [], noindex = false } = Astro.props;
 const common = getTranslations(lang, 'common');
+const cv = getTranslations(lang, 'cv');
 const pageTitle = title ? `${title} · ${common.meta.siteName}` : common.meta.title;
 const pageDescription = description ?? common.meta.description;
 const site = Astro.site ?? Astro.url;
@@ -96,6 +97,7 @@ const sections = ['about', 'services', 'projects', 'ecosystem', 'experience', 'c
     <SiteMenu
       client:idle
       links={sections.map((key) => ({ key, href: `${home}#${key}`, label: common.nav[key] }))}
+      cv={{ href: `/${lang}/cv.pdf`, label: cv.download, fileName: cv.fileName }}
       language={{
         href: switchLocalePath(pathname, otherLang),
         label: otherLang.toUpperCase(),
