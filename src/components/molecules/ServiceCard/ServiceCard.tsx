@@ -1,6 +1,6 @@
 import { RichText } from '@inzumer/ui-library';
 import { SERVICE_ICONS, type ServiceIconName } from '@components/atoms/Icons';
-import { trackingId } from '@utils';
+import { trackingProps } from '@utils';
 
 export interface ServiceCardProps {
   icon: ServiceIconName;
@@ -27,7 +27,7 @@ export const ServiceCard = ({ icon, title, text, more, index }: ServiceCardProps
         {text}
       </RichText>
       <a
-        id={trackingId('services', 'link', 'talk', index)}
+        {...trackingProps('services', 'link', 'talk', index)}
         href={more.href}
         className="inline-flex min-h-11 items-center text-[1.3rem] font-medium underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-focus)"
       >

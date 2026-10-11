@@ -8,6 +8,8 @@ export type ColorScheme = 'light' | 'dark';
 export interface Settings {
   colorScheme?: ColorScheme;
   locale?: Locale;
+  /** Cookie consent by optional category; missing until the visitor answers. */
+  consent?: Record<string, boolean>;
 }
 
 export const readSettings = (storage: KeyValueStorage | null = getBrowserStorage()): Settings =>

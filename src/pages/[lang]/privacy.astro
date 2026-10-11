@@ -1,0 +1,51 @@
+---
+import { RichText } from '@inzumer/ui-library';
+import { COOKIES_HASH } from '@components/organisms/ConsentManager';
+import { getTranslations } from '@i18n';
+import BaseLayout from '@layouts/base-layout.astro';
+import { localePaths, trackingProps, type Locale } from '@utils';
+
+export const getStaticPaths = localePaths;
+
+const lang = Astro.params.lang as Locale;
+const t = getTranslations(lang, 'privacy');
+---
+
+<BaseLayout lang={lang} title={t.title} description={t.description}>
+  <article class="flex max-w-[72rem] flex-col gap-12 pt-28 pb-16">
+    <header class="flex flex-col gap-6">
+      <RichText
+        as="h1"
+        variant="h1"
+        weight="light"
+        className="text-[clamp(4.8rem,9vw,9.6rem)] leading-[0.95] tracking-[-0.04em] uppercase"
+      >
+        {t.title}
+      </RichText>
+      <RichText variant="p2" weight="light" className="text-(--text-secondary)">
+        {t.intro}
+      </RichText>
+    </header>
+    {t.sections.map((section) => (
+      <section class="flex flex-col gap-3 border-t border-(--border-default) pt-8">
+        <RichText
+          as="h2"
+          variant="s4"
+          className="tracking-[0.2em] text-(--text-tertiary) uppercase"
+        >
+          {section.title}
+        </RichText>
+        <RichText variant="p3" weight="light" className="text-(--text-secondary)">
+          {section.text}
+        </RichText>
+      </section>
+    ))}
+    <a
+      {...trackingProps('privacy', 'link', 'cookies')}
+      href={COOKIES_HASH}
+      class="inline-flex min-h-11 w-fit items-center rounded-full border border-(--border-strong) px-6 text-[1.3rem] font-medium"
+    >
+      {t.manage}
+    </a>
+  </article>
+</BaseLayout>

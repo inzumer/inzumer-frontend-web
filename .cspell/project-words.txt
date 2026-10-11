@@ -13,6 +13,7 @@ fontsource
 gitflow
 Gmail
 GMAIL
+gtag
 Handlebars
 hotfixes
 hreflang
@@ -62,6 +63,7 @@ vitest
 wasi
 WCAG
 wght
+WHKZT
 Wouter
 zamuner
 Zamuner

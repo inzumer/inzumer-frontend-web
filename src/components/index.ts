@@ -6,6 +6,7 @@ export * from './molecules/SectionHeader';
 export * from './molecules/ServiceCard';
 export * from './molecules/SiteLoader';
 export * from './molecules/ThemeToggle';
+export * from './organisms/ConsentManager';
 export * from './organisms/ContactForm';
 export * from './organisms/EcosystemSection';
 export * from './organisms/ExperienceList';

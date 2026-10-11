@@ -1,0 +1,32 @@
+{
+  "title": "Privacy",
+  "description": "What inzumer.com collects, why and how to change it.",
+  "intro": "This site belongs to Nahuel Zamuner. It collects as little as possible, and nothing you don't agree to.",
+  "sections": [
+    {
+      "title": "Preferences",
+      "text": "Your theme, language and cookie choice are saved in this browser (local storage). They never leave your device."
+    },
+    {
+      "title": "Visits and performance",
+      "text": "Vercel Web Analytics and Speed Insights count visits and measure loading speed without cookies and without identifying you."
+    },
+    {
+      "title": "Google Analytics",
+      "text": "Only if you accept it: pages visited, clicks on buttons and links, device and approximate location, to see which projects interest people. It uses Google cookies (_ga), without ad signals. You can withdraw it any time."
+    },
+    {
+      "title": "Errors",
+      "text": "If something fails on the site or in the contact form, Sentry receives the technical error, the page and the browser, without your name, your email or your message, and without cookies. It is how I find and fix problems."
+    },
+    {
+      "title": "Contact form",
+      "text": "Your name, email and message reach me by email through Resend, only to answer you. You also get a confirmation. The site keeps no copy."
+    },
+    {
+      "title": "Your rights",
+      "text": "To see, correct or delete your data, write to inzumer@gmail.com."
+    }
+  ],
+  "manage": "Change cookie preferences"
+}

@@ -1,2 +1,2 @@
-/** Element kinds in tracking ids (`<scope>-<kind>-<name>`), for "Click ID contains" triggers. */
-export type TrackingKind = 'input' | 'select' | 'switch' | 'button' | 'link';
+/** Element kinds in tracking ids (`<scope>-<kind>-<name>`), for Tag Manager triggers; `status` marks results. */
+export type TrackingKind = 'input' | 'select' | 'switch' | 'button' | 'link' | 'status';
