@@ -1,0 +1,139 @@
+{
+  "name": "Nahuel Zamuner",
+  "headline": "Senior Frontend Engineer",
+  "location": "Zaragoza, España",
+  "summary": "Senior Frontend Engineer con más de cuatro años en productos de alto tráfico. Construyo y diseño la arquitectura de interfaces rápidas y accesibles en React y TypeScript: hoy el ecosistema digital de PortAventura World en Randstad Digital, pensado para WebViews y picos de tráfico estacionales; antes, el checkout de Mercado Libre, una de las plataformas de comercio electrónico más grandes del mundo.",
+  "experience": [
+    {
+      "company": "Randstad Digital",
+      "client": "PortAventura World",
+      "role": "Senior Software Engineer",
+      "dates": "Ene 2026 – Actualidad",
+      "location": "Zaragoza, España",
+      "highlights": [
+        "Arquitectura: soluciones en React y TypeScript para picos de demanda, con foco en apps basadas en WebView.",
+        "Performance: optimización de Core Web Vitals para una navegación rápida y fluida.",
+        "Liderazgo: estándares técnicos, mentoría y code reviews.",
+        "Integración: datos en tiempo real con los equipos de backend (Node.js, NestJS).",
+        "Calidad: testing automatizado y estado complejo de la aplicación con Zustand."
+      ]
+    },
+    {
+      "company": "Meliorar",
+      "role": "Software Engineer",
+      "dates": "Ago 2025 – Ene 2026",
+      "location": "Zaragoza, España",
+      "highlights": [
+        "Lógica de negocio en backend con Node.js, Express, TypeScript y PostgreSQL (Prisma).",
+        "Integraciones con APIs externas, con datos consistentes y manejo de errores robusto.",
+        "Mejoras de rendimiento en flujos y base de datos; tests unitarios contra regresiones."
+      ]
+    },
+    {
+      "company": "Mercado Libre",
+      "role": "Software Engineer",
+      "dates": "Ene 2024 – Feb 2025",
+      "location": "Buenos Aires, Argentina",
+      "highlights": [
+        "Pasarela de pagos y revisión de compra del checkout.",
+        "Mantenimiento y documentación de una librería de componentes React en Storybook para los equipos que la usaban.",
+        "Tests con Testing Library y suites end-to-end con Playwright y Cucumber.",
+        "Monitoreo de despliegues en New Relic y métricas de rendimiento en Datadog."
+      ]
+    },
+    {
+      "company": "Mercado Libre",
+      "role": "Analyst Software Developer",
+      "dates": "Nov 2021 – Dic 2023",
+      "location": "Buenos Aires, Argentina",
+      "highlights": [
+        "Pasarela de pagos y revisión de compra del checkout.",
+        "Features nuevas en React junto a código legado en Backbone.js, Marionette.js y Handlebars.",
+        "Estilos con Sass y debugging con Kibana."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "label": "Frontend",
+      "items": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Astro",
+        "Tailwind CSS",
+        "CSS Modules",
+        "Zustand",
+        "Redux"
+      ]
+    },
+    {
+      "label": "Calidad",
+      "items": [
+        "Testing Library",
+        "Jest",
+        "Vitest",
+        "Playwright",
+        "Cucumber",
+        "Accesibilidad (WCAG)"
+      ]
+    },
+    {
+      "label": "Performance y observabilidad",
+      "items": ["Core Web Vitals", "Datadog", "New Relic", "Kibana", "Grafana"]
+    },
+    {
+      "label": "Backend y herramientas",
+      "items": [
+        "Node.js",
+        "NestJS",
+        "Express",
+        "PostgreSQL",
+        "MongoDB",
+        "GitHub Actions",
+        "Storybook"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Platzi",
+      "program": "English Academy",
+      "dates": "2025 – 2026"
+    },
+    {
+      "school": "Platzi",
+      "program": "TypeScript Fundamentals",
+      "dates": "2025"
+    },
+    {
+      "school": "Da Vinci School",
+      "program": "Analista de Sistemas",
+      "dates": "2022 – 2023"
+    },
+    {
+      "school": "Digital House",
+      "program": "Frontend Developer",
+      "dates": "2021 – 2022"
+    },
+    {
+      "school": "Platzi",
+      "program": "Frontend Architect",
+      "dates": "2020 – 2021"
+    }
+  ],
+  "languages": [
+    {
+      "name": "Español",
+      "level": "Nativo"
+    },
+    {
+      "name": "Inglés",
+      "level": "Profesional"
+    },
+    {
+      "name": "Italiano",
+      "level": "Básico (A2)"
+    }
+  ]
+}

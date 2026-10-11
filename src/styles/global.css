@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+@import '@inzumer/tokens/css/reset' layer(base);
+@import '@inzumer/tokens/css/variables';
+@import '@inzumer/tokens/css/typography' layer(base);
+@import '@inzumer/tokens/css/scrollbar';
+@import '@fontsource-variable/inter/wght.css';
+@import './theme.css';
+@import './project-prose.css';
+
+@config '../../tailwind.config.ts';
+
+@source '../../node_modules/@inzumer/ui-library/dist';

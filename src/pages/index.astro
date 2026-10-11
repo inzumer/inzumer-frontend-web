@@ -1,0 +1,32 @@
+---
+import { SETTINGS_STORAGE_KEY } from '@constants';
+import { DEFAULT_LOCALE, languageRedirectScript, LOCALES, SITE_BASE, withBase } from '@utils';
+
+const fallback = withBase(`/${DEFAULT_LOCALE}`);
+---
+
+<!doctype html>
+<html lang={DEFAULT_LOCALE}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Inzumer</title>
+    <link rel="canonical" href={new URL(fallback, Astro.site).href} />
+    <script
+      is:inline
+      set:html={languageRedirectScript({
+        storageKey: SETTINGS_STORAGE_KEY,
+        locales: LOCALES,
+        fallbackLocale: DEFAULT_LOCALE,
+        base: SITE_BASE,
+      })}
+    ></script>
+    <noscript>
+      <meta http-equiv="refresh" content={`0; url=${fallback}`} />
+    </noscript>
+  </head>
+  <body>
+    <a href={fallback}>Inzumer</a>
+  </body>
+</html>

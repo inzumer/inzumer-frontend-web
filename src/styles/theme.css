@@ -1,0 +1,118 @@
+/* Inzumer: black and white, thin type. Light mode is bone white (#F4F2EE), never pure white. */
+:root {
+  --font-body: 'Inter Variable', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --layout-max-width: 120rem;
+
+  color-scheme: light;
+
+  --surface-primary: rgb(244 242 238);
+  --surface-secondary: rgb(236 233 227);
+  --surface-tertiary: rgb(226 222 215);
+  --surface-inverse: rgb(21 21 21);
+  --surface-overlay: rgb(21 21 21 / 0.5);
+
+  --text-primary: rgb(21 21 21);
+  --text-secondary: rgb(61 59 56);
+  --text-tertiary: rgb(107 104 98);
+  --text-disabled: rgb(160 156 149);
+  --text-inverse: rgb(248 248 248);
+  --text-link: rgb(21 21 21);
+  --text-link-hover: rgb(61 59 56);
+
+  --border-default: rgb(21 21 21 / 0.12);
+  --border-muted: rgb(21 21 21 / 0.06);
+  --border-strong: rgb(21 21 21 / 0.28);
+  --border-focus: rgb(21 21 21);
+
+  --btn-primary-bg: rgb(21 21 21);
+  --btn-primary-bg-hover: rgb(61 59 56);
+  --btn-primary-bg-active: rgb(0 0 0);
+  --btn-primary-text: rgb(248 248 248);
+  --btn-primary-border: transparent;
+
+  --btn-secondary-bg: transparent;
+  --btn-secondary-bg-hover: rgb(21 21 21 / 0.06);
+  --btn-secondary-bg-active: rgb(21 21 21 / 0.1);
+  --btn-secondary-text: rgb(21 21 21);
+  --btn-secondary-border: rgb(21 21 21 / 0.28);
+
+  --btn-ghost-bg: transparent;
+  --btn-ghost-bg-hover: rgb(21 21 21 / 0.06);
+  --btn-ghost-bg-active: rgb(21 21 21 / 0.1);
+  --btn-ghost-text: rgb(21 21 21);
+  --btn-ghost-border: transparent;
+
+  --input-bg: transparent;
+  --input-border: rgb(21 21 21 / 0.28);
+  --input-border-focus: rgb(21 21 21);
+  --input-text: rgb(21 21 21);
+  --input-placeholder: rgb(107 104 98);
+
+  /* Soft circle behind the service icons. */
+  --badge-bg: rgb(21 21 21 / 0.06);
+}
+
+[data-color-scheme='dark'] {
+  color-scheme: dark;
+
+  --surface-primary: rgb(21 21 21);
+  --surface-secondary: rgb(29 29 29);
+  --surface-tertiary: rgb(38 38 38);
+  --surface-inverse: rgb(248 248 248);
+  --surface-overlay: rgb(0 0 0 / 0.6);
+
+  --text-primary: rgb(248 248 248);
+  --text-secondary: rgb(201 201 201);
+  --text-tertiary: rgb(141 141 141);
+  --text-disabled: rgb(82 82 82);
+  --text-inverse: rgb(21 21 21);
+  --text-link: rgb(248 248 248);
+  --text-link-hover: rgb(201 201 201);
+
+  --border-default: rgb(248 248 248 / 0.1);
+  --border-muted: rgb(248 248 248 / 0.05);
+  --border-strong: rgb(248 248 248 / 0.22);
+  --border-focus: rgb(248 248 248);
+
+  --btn-primary-bg: rgb(248 248 248);
+  --btn-primary-bg-hover: rgb(224 224 224);
+  --btn-primary-bg-active: rgb(255 255 255);
+  --btn-primary-text: rgb(21 21 21);
+
+  --btn-secondary-bg-hover: rgb(248 248 248 / 0.08);
+  --btn-secondary-bg-active: rgb(248 248 248 / 0.12);
+  --btn-secondary-text: rgb(248 248 248);
+  --btn-secondary-border: rgb(248 248 248 / 0.22);
+
+  --btn-ghost-bg-hover: rgb(248 248 248 / 0.08);
+  --btn-ghost-bg-active: rgb(248 248 248 / 0.12);
+  --btn-ghost-text: rgb(248 248 248);
+
+  --input-border: rgb(248 248 248 / 0.22);
+  --input-border-focus: rgb(248 248 248);
+  --input-text: rgb(248 248 248);
+  --input-placeholder: rgb(141 141 141);
+
+  --badge-bg: rgb(248 248 248 / 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--surface-primary);
+  color: var(--text-primary);
+}
+
+::selection {
+  background: var(--text-primary);
+  color: var(--surface-primary);
+}

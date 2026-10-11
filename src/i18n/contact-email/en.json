@@ -1,0 +1,20 @@
+{
+  "autoReply": {
+    "subject": "Thanks for writing, {name}",
+    "preview": "I got your message and I'll reply soon.",
+    "title": "Thanks for writing",
+    "greeting": "Hi {name},",
+    "body": "I got your message and I'll reply from this address within a few days.",
+    "signature": "Nahuel Zamuner — Senior Frontend Engineer",
+    "button": "Visit inzumer.com",
+    "footer": "You're getting this email because you wrote through the form on inzumer.com."
+  },
+  "notification": {
+    "subject": "New message from {name}",
+    "preview": "{name} wrote through inzumer.com.",
+    "title": "New message",
+    "from": "From: {name} <{email}>",
+    "button": "Reply",
+    "footer": "Sent from the contact form on inzumer.com."
+  }
+}

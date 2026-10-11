@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  # The weekly release runs this same validation on its release branch.
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  # Coverage comment on PRs (inzumer-ci node-ci).
+  pull-requests: write
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    uses: inzumer/inzumer-ci/.github/workflows/node-ci.yml@v1
+    with:
+      ref: ${{ inputs.ref || github.ref }}
+      audit-level: low
+      coverage-summary: coverage/coverage-summary.json
+      commands: |
+        pnpm typecheck
+        pnpm lint
+        pnpm format:check
+        pnpm spellcheck
+        pnpm test:coverage
+        pnpm build
+        pnpm audit:a11y

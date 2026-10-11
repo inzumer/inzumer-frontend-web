@@ -1,0 +1,20 @@
+{
+  "autoReply": {
+    "subject": "Gracias por escribirme, {name}",
+    "preview": "Recibí tu mensaje y te respondo pronto.",
+    "title": "Gracias por escribirme",
+    "greeting": "Hola {name},",
+    "body": "Recibí tu mensaje y te respondo desde esta dirección en unos días.",
+    "signature": "Nahuel Zamuner — Senior Frontend Engineer",
+    "button": "Visitar inzumer.com",
+    "footer": "Recibís este correo porque escribiste desde el formulario de inzumer.com."
+  },
+  "notification": {
+    "subject": "Nuevo mensaje de {name}",
+    "preview": "{name} escribió desde inzumer.com.",
+    "title": "Nuevo mensaje",
+    "from": "De: {name} <{email}>",
+    "button": "Responder",
+    "footer": "Enviado desde el formulario de contacto de inzumer.com."
+  }
+}

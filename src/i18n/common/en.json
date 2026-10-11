@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "siteName": "Inzumer",
+    "title": "Nahuel Zamuner · Senior Frontend Engineer",
+    "description": "Senior Frontend Engineer in Spain. Fast, accessible React and TypeScript interfaces for products used by millions: WebViews, design systems and web performance."
+  },
+  "skipLink": "Skip to content",
+  "nav": {
+    "label": "Main",
+    "home": "Home",
+    "about": "About",
+    "services": "How I can help",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "menu": {
+    "open": "Open menu",
+    "close": "Close menu",
+    "title": "Menu"
+  },
+  "rail": {
+    "label": "Social and preferences",
+    "language": "Language",
+    "themeToDark": "Switch to dark mode",
+    "themeToLight": "Switch to light mode"
+  },
+  "cv": {
+    "download": "Download CV"
+  },
+  "footer": {
+    "disclaimer": "© {year} Developed by @inzumer — or Nahuel Zamuner, if you prefer."
+  },
+  "carousel": {
+    "previous": "Previous",
+    "next": "Next"
+  }
+}

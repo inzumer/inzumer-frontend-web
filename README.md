@@ -1,103 +1,60 @@
-# Next.js Project 🚀
+# inzumer.com
 
-This is a project developed with [Next.js](https://nextjs.org), initialized with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app), using **TypeScript**, **CSS Modules**, and specific libraries such as [`resend`](https://resend.com/emails).
+Portfolio of Nahuel Zamuner, Senior Frontend Engineer, in English and Spanish:
+<https://www.inzumer.com>.
 
----
+## Stack
 
-## 👾 Main Technologies and Tools
+- [Astro](https://astro.build) static pages with React 19 islands, TypeScript strict.
+- [Tailwind CSS 4](https://tailwindcss.com) with the `@inzumer/tokens` preset and the
+  `@inzumer/ui-library` components.
+- Contact form: an Astro endpoint on Vercel that sends the emails through Resend, built with
+  `@inzumer/email`.
+- Vitest + Testing Library (90% coverage gate), ESLint, Prettier, cspell and an axe audit.
 
-- **Next.js** — React framework for production.
-- **TypeScript** — Static typing for greater robustness and scalability.
-- **CSS Modules** — For local styles, using conventions such as `styles.content__example`.
-- **resend** — Library for sending emails.
+## Getting started
 
----
-
-## 🧱 Coding Conventions
-
-### ✨ Styles with CSS Modules
-
-Styles are written using CSS Modules, with the following class naming convention:
-
-```ts
-styles.blockName__element
-
-Example: styles.card__title, styles.hero__image
-```
-
----
-
-## 🧼 Organization and Comments in CSS
-
-All style files must be commented and organized as follows:
-
-```css
-/*
-1. Positioning
-2. Box model (Ex: Box model measurements, Margin, Padding, etc.)
-3. Typography
-4. Visuals
-5. Others
-*/
-```
-
----
-
-## 🚀 Getting Started
-
-First, install the dependencies and run the development server:
-
-```ts
-npm install
-npm run dev
-# or with yarn
-yarn install
-yarn dev
-# or pnpm
+```bash
 pnpm install
 pnpm dev
-# or bun
-bun install
-bun dev
 ```
 
-Then open http://localhost:3000 in your browser to see the app in action.
+Node comes from `.nvmrc` and pnpm from `packageManager`.
 
-Start editing the app from app/page.tsx. The content updates automatically when you save changes.
+| Command             | What it does                                    |
+| ------------------- | ----------------------------------------------- |
+| `pnpm dev`          | Development server                              |
+| `pnpm build`        | Production build                                |
+| `pnpm validate`     | typecheck, lint, tests with coverage and build  |
+| `pnpm format:check` | Prettier                                        |
+| `pnpm spellcheck`   | cspell                                          |
+| `pnpm audit:a11y`   | axe (WCAG 2.2 AA) on every page, light and dark |
 
----
+## Structure
 
-## 🚀 Release Process and GitFlow
+```txt
+src/
+  components/   atoms · molecules · organisms (React, one folder each with its tests)
+  content/      projects/<lang>/<slug>.md
+  i18n/         <folder>/{en,es}.json (profile = experience, skills, education)
+  layouts/      base layout and footer
+  pages/        [lang]/index, [lang]/projects/[slug], 404, api/contact
+  services/     contact client; contact-email (server only)
+  utils/        locale, routes, settings, SEO, contact schema, rate limit…
+```
 
-This project uses these GitFlow rules, which you can see [here](RELEASE_PROCESS.md).
+## Contact emails
 
----
+`/api/contact` validates the form, drops bots (honeypot) and floods (5 per address every 10
+minutes), then sends two emails from `contact@inzumer.com` through [Resend](https://resend.com): the
+message to Nahuel, with "reply to" set to the sender, and a confirmation to the sender in their
+language, with "reply to" set to inzumer@gmail.com. The confirmation never repeats the message.
 
-## 📦 Font Optimization
+It needs `RESEND_API_KEY` (set in Vercel) and the `inzumer.com` domain verified in Resend (DNS
+records in Vercel; no mailbox on the domain is needed). Locally, copy `.env.example` to `.env`.
 
-This project uses `next/font` to efficiently load the [Geist]('https://vercel.com/font') font, developed by Vercel.
+## Deploy
 
----
-
-## 📚 Useful Resources
-
-[Official Next.js Documentation]('https://nextjs.org/docs')
-
-[Next.js Interactive Tutorial]('https://nextjs.org/learn')
-
-[Next.js GitHub Repository]('https://github.com/vercel/next.js')
-
----
-
-## ☁️ Deploying with Vercel
-
-The easiest way to deploy this project is through Vercel, a platform created by the authors of Next.js.
-
-Check out the deployment [documentation]('https://nextjs.org/docs/app/building-your-application/deploying') to learn more.
-
----
-
-## 📬 Comments
-
-All suggestions or contributions are welcome!
-
+Vercel builds every push (`vercel.json` pins the framework and pnpm). `develop` is the integration
+branch and `main` is production; releases are cut on Fridays by `release-prepare.yml`. See
+[CLAUDE.md](./CLAUDE.md) for the conventions.

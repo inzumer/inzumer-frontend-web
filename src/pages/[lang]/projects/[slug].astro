@@ -1,0 +1,158 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import { Breadcrumbs, Icon, RichText } from '@inzumer/ui-library';
+import { getTranslations } from '@i18n';
+import BaseLayout from '@layouts/base-layout.astro';
+import { breadcrumbSchema, localizedPath, projectSlug, trackingId, type Locale } from '@utils';
+import { LOCALES } from '@utils/locale';
+
+export const getStaticPaths = async () => {
+  const entries = await getCollection('projects');
+
+  return LOCALES.flatMap((lang) =>
+    entries
+      .filter((entry) => entry.id.startsWith(`${lang}/`))
+      .map((entry) => ({ params: { lang, slug: projectSlug(entry.id) }, props: { entry } })),
+  );
+};
+
+const lang = Astro.params.lang as Locale;
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+const t = getTranslations(lang, 'project-page');
+const homeHref = localizedPath(lang, 'home');
+const projectsHref = `${homeHref}#projects`;
+const trail = [
+  { label: t.breadcrumbs.home, href: homeHref },
+  { label: t.breadcrumbs.projects, href: projectsHref },
+];
+---
+
+<BaseLayout
+  lang={lang}
+  title={data.name}
+  description={data.summary}
+  structuredData={[
+    breadcrumbSchema(Astro.site ?? Astro.url, [
+      ...trail,
+      { label: data.name, href: Astro.url.pathname },
+    ]),
+  ]}
+>
+  <article class="flex flex-col gap-16 pt-28 pb-16">
+    <header class="flex flex-col gap-8">
+      <Breadcrumbs
+        aria-label={t.breadcrumbs.label}
+        items={trail.map((item, index) => ({
+          ...item,
+          id: trackingId('project', 'link', 'breadcrumb', index),
+        }))}
+        current={data.name}
+      />
+      <RichText
+        as="h1"
+        variant="h1"
+        weight="light"
+        className="text-[clamp(4.8rem,9vw,11.2rem)] leading-[0.95] tracking-[-0.04em] uppercase"
+      >
+        {data.name}
+      </RichText>
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-3 text-[1.3rem] font-light text-(--text-tertiary)">
+        <span>{data.kind}</span>
+        <span class="font-medium text-(--text-primary)">{data.company}</span>
+        {data.url && (
+          <a
+            id={trackingId('project', 'link', 'visit')}
+            href={data.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-11 items-center gap-2 text-(--text-primary) underline-offset-4 hover:underline"
+          >
+            {t.visit} {data.urlLabel ?? data.url}
+            <Icon name="arrow-forward" size="sm" />
+          </a>
+        )}
+      </div>
+    </header>
+
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-start">
+      <div class="overflow-hidden rounded-[1.8rem] border border-(--border-default)">
+        <Image
+          src={data.cover}
+          alt={data.coverAlt}
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 1024px) 55vw, 100vw"
+          loading="eager"
+          class="aspect-[4/3] w-full object-cover"
+        />
+      </div>
+      <div class="flex flex-col gap-8">
+        <RichText
+          as="h2"
+          variant="h3"
+          weight="light"
+          className="text-[2.8rem] leading-tight tracking-[-0.02em]"
+        >
+          {data.title}
+        </RichText>
+        <div class="project-prose">
+          <Content />
+        </div>
+        <div class="flex flex-col gap-3">
+          <RichText
+            as="h2"
+            variant="s4"
+            className="tracking-[0.2em] text-(--text-tertiary) uppercase"
+          >
+            {t.stack}
+          </RichText>
+          <ul class="flex flex-wrap gap-2">
+            {data.stack.map((tech) => (
+              <li class="rounded-full border border-(--border-strong) px-4 py-1.5 text-[1.2rem]">
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    {data.gallery.length > 0 && (
+      <section aria-labelledby="gallery-title" class="flex flex-col gap-8">
+        <RichText
+          as="h2"
+          id="gallery-title"
+          variant="h2"
+          weight="light"
+          className="text-[3.2rem] tracking-[-0.035em] uppercase"
+        >
+          {t.gallery}
+        </RichText>
+        <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {data.gallery.map((image) => (
+            <li class="overflow-hidden rounded-[1.8rem] border border-(--border-default)">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                widths={[480, 800]}
+                sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                class="aspect-square w-full object-cover"
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <a
+      id={trackingId('project', 'link', 'back')}
+      href={projectsHref}
+      class="inline-flex min-h-11 w-fit items-center gap-3 self-start rounded-full border border-(--border-strong) px-6 text-[1.3rem] font-medium"
+    >
+      <Icon name="chevron-left" size="sm" />
+      {t.back}
+    </a>
+  </article>
+</BaseLayout>

@@ -1,0 +1,144 @@
+---
+import { getImage } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import { RichText } from '@inzumer/ui-library';
+import { isServiceIconName } from '@components/atoms/Icons';
+import { SectionHeader } from '@components/molecules/SectionHeader';
+import { ContactForm } from '@components/organisms/ContactForm';
+import { ExperienceList } from '@components/organisms/ExperienceList';
+import { ProjectShowcase } from '@components/organisms/ProjectShowcase';
+import { ServicesCarousel } from '@components/organisms/ServicesCarousel';
+import { getTranslations } from '@i18n';
+import BaseLayout from '@layouts/base-layout.astro';
+import {
+  localePaths,
+  localizedPath,
+  personSchema,
+  projectsFor,
+  projectSlug,
+  type Locale,
+} from '@utils';
+
+export const getStaticPaths = localePaths;
+
+const lang = Astro.params.lang as Locale;
+const common = getTranslations(lang, 'common');
+const home = getTranslations(lang, 'home');
+const profile = getTranslations(lang, 'profile');
+
+const projects = await Promise.all(
+  projectsFor(await getCollection('projects'), lang).map(async ({ id, data }) => {
+    const cover = await getImage({ src: data.cover, width: 1200, format: 'webp' });
+    const slug = projectSlug(id);
+
+    return {
+      slug,
+      name: data.name,
+      title: data.title,
+      company: data.company,
+      kind: data.kind,
+      summary: data.summary,
+      stack: data.stack,
+      href: localizedPath(lang, 'projects', slug),
+      cover: {
+        src: cover.src,
+        width: Number(cover.attributes['width'] ?? 1200),
+        height: Number(cover.attributes['height'] ?? 900),
+        alt: data.coverAlt,
+      },
+    };
+  }),
+);
+
+const homeHref = localizedPath(lang, 'home');
+---
+
+<BaseLayout
+  lang={lang}
+  structuredData={[
+    personSchema({
+      site: Astro.site ?? Astro.url,
+      homeHref,
+      jobTitle: profile.headline,
+      description: common.meta.description,
+    }),
+  ]}
+>
+  <section
+    aria-labelledby="hero-title"
+    class="flex min-h-[calc(100dvh-8rem)] flex-col items-center justify-center gap-6"
+  >
+    <RichText
+      as="h1"
+      id="hero-title"
+      variant="h1"
+      className="text-center text-[clamp(6.4rem,15vw,20rem)] leading-none font-extrabold tracking-[-0.02em]"
+    >
+      {home.hero.title}
+    </RichText>
+    <RichText
+      variant="p3"
+      weight="light"
+      className="self-center text-center text-(--text-secondary) md:self-end md:pr-[8%] md:text-right"
+    >
+      {home.hero.tagline}
+    </RichText>
+  </section>
+
+  <div class="flex flex-col gap-32 pb-16 md:gap-40">
+    <section id="about" aria-labelledby="about-title" class="flex scroll-mt-16 flex-col gap-10">
+      <SectionHeader id="about-title" title={home.about.title} />
+      <div class="grid max-w-[96rem] gap-6 md:grid-cols-2 md:gap-12">
+        {home.about.paragraphs.map((paragraph) => (
+          <RichText variant="p2" weight="light" className="text-(--text-secondary)">
+            {paragraph}
+          </RichText>
+        ))}
+      </div>
+    </section>
+
+    <div id="services" class="scroll-mt-16">
+      <ServicesCarousel
+        client:visible
+        title={home.services.title}
+        services={home.services.items.flatMap((item) =>
+          isServiceIconName(item.icon) ? [{ ...item, icon: item.icon }] : [],
+        )}
+        more={{ label: home.services.more, href: '#contact' }}
+        labels={common.carousel}
+      />
+    </div>
+
+    <div id="projects" class="scroll-mt-16">
+      <ProjectShowcase
+        client:visible
+        title={home.projects.title}
+        projects={projects}
+        labels={{
+          list: home.projects.listLabel,
+          view: home.projects.view,
+          previous: home.projects.previous,
+          next: home.projects.next,
+        }}
+      />
+    </div>
+
+    <div id="experience" class="scroll-mt-16">
+      <ExperienceList title={home.experience.title} items={profile.experience} />
+    </div>
+
+    <section
+      id="contact"
+      aria-labelledby="contact-title"
+      class="grid scroll-mt-16 gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]"
+    >
+      <div class="flex flex-col gap-6">
+        <SectionHeader id="contact-title" title={home.contact.title} />
+        <RichText variant="p2" weight="light" className="max-w-[44ch] text-(--text-secondary)">
+          {home.contact.text}
+        </RichText>
+      </div>
+      <ContactForm client:visible lang={lang} labels={home.contact} />
+    </section>
+  </div>
+</BaseLayout>

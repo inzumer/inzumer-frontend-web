@@ -1,0 +1,75 @@
+{
+  "hero": {
+    "title": "INZUMER",
+    "tagline": "Senior Frontend Engineer — or Nahuel Zamuner, if you prefer."
+  },
+  "about": {
+    "title": "About me",
+    "paragraphs": [
+      "I build fast, accessible interfaces for products used by millions. Today I lead the frontend architecture of PortAventura World's digital ecosystem at Randstad Digital: React and TypeScript apps that run in WebViews and hold up under seasonal traffic peaks.",
+      "Before that I spent over three years in the checkout of Mercado Libre, one of the largest e-commerce platforms in the world. I care about Core Web Vitals, design systems and tests that catch regressions before people do, and I maintain Inzumer, my own design system: components, tokens and emails published on npm."
+    ]
+  },
+  "services": {
+    "title": "How I can help",
+    "more": "Let's talk",
+    "items": [
+      {
+        "icon": "speed",
+        "title": "Fast interfaces",
+        "text": "Core Web Vitals in the green and instant loads, even during seasonal traffic peaks."
+      },
+      {
+        "icon": "phone",
+        "title": "Apps in WebViews",
+        "text": "One web codebase running as an app on iOS and Android, with safe areas, gestures and focus taken care of."
+      },
+      {
+        "icon": "grid",
+        "title": "Design systems",
+        "text": "Components, tokens and Storybook docs so several teams build the same way."
+      },
+      {
+        "icon": "accessibility",
+        "title": "Accessibility",
+        "text": "WCAG 2.2 AA from the first component: keyboard, screen readers and contrast."
+      },
+      {
+        "icon": "check",
+        "title": "Testing and quality",
+        "text": "Unit, integration and end-to-end tests that catch regressions before every release."
+      },
+      {
+        "icon": "layers",
+        "title": "Frontend architecture",
+        "text": "Technical standards, code reviews and mentoring so the codebase scales with the team."
+      }
+    ]
+  },
+  "projects": {
+    "title": "Projects",
+    "listLabel": "Choose a project",
+    "view": "View project",
+    "previous": "Previous project",
+    "next": "Next project"
+  },
+  "experience": {
+    "title": "Experience"
+  },
+  "contact": {
+    "title": "Say hi",
+    "text": "A question, a proposal or just a hello? Write to me: you'll get a confirmation right away and I'll reply from inzumer@gmail.com.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "placeholderName": "Your name",
+    "placeholderEmail": "you@example.com",
+    "placeholderMessage": "Tell me what you have in mind",
+    "send": "Send message",
+    "sending": "Sending…",
+    "success": "Message sent. Check your inbox: a confirmation is on its way.",
+    "error": "The message couldn't be sent. Try again, or write to inzumer@gmail.com.",
+    "invalid": "Check the highlighted fields.",
+    "honeypot": "Leave this field empty"
+  }
+}

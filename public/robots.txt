@@ -1,6 +1,5 @@
 User-agent: *
-Disallow: /error
 Disallow: /api
 Allow: /
 
-Sitemap: https://www.inzumer.com/sitemap.xml
+Sitemap: https://www.inzumer.com/sitemap-index.xml

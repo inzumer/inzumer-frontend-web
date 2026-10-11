@@ -1,0 +1,130 @@
+---
+import '@styles/global.css';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
+import { SiteMenu } from '@components/organisms/SiteMenu';
+import { SiteRail } from '@components/organisms/SiteRail';
+import { OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
+import { getTranslations } from '@i18n';
+import {
+  canonicalPath,
+  LOCALES,
+  localizedPath,
+  switchLocalePath,
+  themeScript,
+  type Locale,
+  type StructuredData,
+} from '@utils';
+import SiteFooter from './site-footer.astro';
+
+interface Props {
+  lang: Locale;
+  title?: string | undefined;
+  description?: string | undefined;
+  structuredData?: StructuredData[];
+  noindex?: boolean;
+}
+
+const { lang, title, description, structuredData = [], noindex = false } = Astro.props;
+const common = getTranslations(lang, 'common');
+const pageTitle = title ? `${title} · ${common.meta.siteName}` : common.meta.title;
+const pageDescription = description ?? common.meta.description;
+const site = Astro.site ?? Astro.url;
+const pathname = canonicalPath(Astro.url.pathname);
+const canonical = new URL(pathname, site).href;
+const alternates = LOCALES.map((locale) => ({
+  hreflang: locale,
+  href: new URL(switchLocalePath(pathname, locale), site).href,
+}));
+const OG_LOCALES: Record<Locale, string> = { en: 'en_US', es: 'es_ES' };
+const otherLang = LOCALES.find((locale) => locale !== lang) ?? lang;
+const home = localizedPath(lang, 'home');
+const sections = ['about', 'services', 'projects', 'experience', 'contact'] as const;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#151515" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="author" content={SITE_AUTHOR.name} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    {alternates.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
+    ))}
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(switchLocalePath(pathname, 'en'), site).href}
+    />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={common.meta.siteName} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(OG_IMAGE, site).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={OG_LOCALES[lang]} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content={SITE_AUTHOR.handle} />
+    {structuredData.map((data) => (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(data)} />
+    ))}
+    <script is:inline set:html={themeScript(SETTINGS_STORAGE_KEY, 'dark')} />
+  </head>
+  <body class="min-h-dvh antialiased">
+    <a
+      href="#main"
+      class="fixed top-4 left-4 z-50 -translate-y-24 rounded-full bg-(--btn-primary-bg) px-6 py-3 text-(--btn-primary-text) focus:translate-y-0"
+    >
+      {common.skipLink}
+    </a>
+    <SiteMenu
+      client:idle
+      links={sections.map((key) => ({ key, href: `${home}#${key}`, label: common.nav[key] }))}
+      language={{
+        href: switchLocalePath(pathname, otherLang),
+        label: otherLang.toUpperCase(),
+        lang: otherLang,
+      }}
+      labels={{
+        open: common.menu.open,
+        close: common.menu.close,
+        title: common.menu.title,
+        navigation: common.nav.label,
+      }}
+    />
+    <SiteRail
+      client:idle
+      languages={LOCALES.map((locale) => ({
+        lang: locale,
+        href: switchLocalePath(pathname, locale),
+        current: locale === lang,
+      }))}
+      labels={{
+        rail: common.rail.label,
+        language: common.rail.language,
+        toDark: common.rail.themeToDark,
+        toLight: common.rail.themeToLight,
+      }}
+    />
+    <main id="main" class="mx-auto w-full max-w-layout px-6 sm:px-12 lg:px-[13.6rem]">
+      <slot />
+    </main>
+    <SiteFooter lang={lang} />
+    <Analytics />
+    <SpeedInsights />
+  </body>
+</html>

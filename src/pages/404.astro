@@ -1,0 +1,53 @@
+---
+import { RichText } from '@inzumer/ui-library';
+import { getTranslations } from '@i18n';
+import BaseLayout from '@layouts/base-layout.astro';
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  localizedPath,
+  notFoundLanguageScript,
+  SITE_BASE,
+  trackingId,
+} from '@utils';
+
+const messages = LOCALES.map((lang) => ({
+  lang,
+  text: getTranslations(lang, 'not-found'),
+  home: localizedPath(lang, 'home'),
+}));
+const title = getTranslations(DEFAULT_LOCALE, 'not-found').title;
+---
+
+<BaseLayout lang={DEFAULT_LOCALE} title={title} noindex>
+  {messages.map(({ lang, text, home }) => (
+    <section
+      data-not-found={lang}
+      lang={lang}
+      hidden={lang !== DEFAULT_LOCALE}
+      class="flex min-h-[70dvh] flex-col items-center justify-center gap-6 text-center"
+    >
+      <RichText
+        as="p"
+        variant="h1"
+        className="text-[clamp(9.6rem,20vw,20rem)] leading-none font-extrabold tracking-[-0.02em]"
+      >
+        404
+      </RichText>
+      <RichText as="h1" variant="h2" weight="light" className="tracking-[-0.035em] uppercase">
+        {text.title}
+      </RichText>
+      <RichText variant="p2" weight="light" className="text-(--text-secondary)">
+        {text.text}
+      </RichText>
+      <a
+        id={trackingId('not-found', 'link', 'home', lang)}
+        href={home}
+        class="inline-flex min-h-11 items-center rounded-full border border-(--border-strong) px-6 text-[1.3rem] font-medium"
+      >
+        {text.back}
+      </a>
+    </section>
+  ))}
+  <script is:inline set:html={notFoundLanguageScript({ locales: LOCALES, base: SITE_BASE })} />
+</BaseLayout>

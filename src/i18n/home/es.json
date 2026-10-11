@@ -1,0 +1,75 @@
+{
+  "hero": {
+    "title": "INZUMER",
+    "tagline": "Senior Frontend Engineer — o Nahuel Zamuner, como prefieras."
+  },
+  "about": {
+    "title": "Sobre mí",
+    "paragraphs": [
+      "Construyo interfaces rápidas y accesibles para productos con millones de usuarios. Hoy lidero la arquitectura frontend del ecosistema digital de PortAventura World en Randstad Digital: apps en React y TypeScript que corren en WebViews y aguantan picos de tráfico estacionales.",
+      "Antes pasé más de tres años en el checkout de Mercado Libre, una de las plataformas de comercio electrónico más grandes del mundo. Me importan los Core Web Vitals, los design systems y los tests que encuentran regresiones antes que las personas, y mantengo Inzumer, mi propio design system: componentes, tokens y emails publicados en npm."
+    ]
+  },
+  "services": {
+    "title": "En qué puedo ayudarte",
+    "more": "Hablemos",
+    "items": [
+      {
+        "icon": "speed",
+        "title": "Interfaces rápidas",
+        "text": "Core Web Vitals en verde y carga instantánea, también en picos de tráfico estacionales."
+      },
+      {
+        "icon": "phone",
+        "title": "Apps en WebView",
+        "text": "Una base web que corre como app en iOS y Android, con safe areas, gestos y foco cuidados."
+      },
+      {
+        "icon": "grid",
+        "title": "Design systems",
+        "text": "Componentes, tokens y documentación en Storybook para que varios equipos construyan igual."
+      },
+      {
+        "icon": "accessibility",
+        "title": "Accesibilidad",
+        "text": "WCAG 2.2 AA desde el primer componente: teclado, lectores de pantalla y contraste."
+      },
+      {
+        "icon": "check",
+        "title": "Testing y calidad",
+        "text": "Tests unitarios, de integración y end-to-end que encuentran regresiones antes de cada release."
+      },
+      {
+        "icon": "layers",
+        "title": "Arquitectura frontend",
+        "text": "Estándares técnicos, code reviews y mentoría para que el código escale con el equipo."
+      }
+    ]
+  },
+  "projects": {
+    "title": "Proyectos",
+    "listLabel": "Elegí un proyecto",
+    "view": "Ver proyecto",
+    "previous": "Proyecto anterior",
+    "next": "Proyecto siguiente"
+  },
+  "experience": {
+    "title": "Experiencia"
+  },
+  "contact": {
+    "title": "Salúdame",
+    "text": "¿Una pregunta, una propuesta o simplemente un saludo? Escribime: te llega una confirmación al instante y te respondo desde inzumer@gmail.com.",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "placeholderName": "Tu nombre",
+    "placeholderEmail": "tu@correo.com",
+    "placeholderMessage": "Contame qué tenés en mente",
+    "send": "Enviar mensaje",
+    "sending": "Enviando…",
+    "success": "Mensaje enviado. Revisá tu correo: te llega una confirmación.",
+    "error": "No se pudo enviar el mensaje. Probá de nuevo o escribime a inzumer@gmail.com.",
+    "invalid": "Revisá los campos marcados.",
+    "honeypot": "Dejá este campo vacío"
+  }
+}

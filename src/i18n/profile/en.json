@@ -1,0 +1,139 @@
+{
+  "name": "Nahuel Zamuner",
+  "headline": "Senior Frontend Engineer",
+  "location": "Zaragoza, Spain",
+  "summary": "Senior Frontend Engineer with over four years in high-traffic products. I build and architect fast, accessible React and TypeScript interfaces: today the digital ecosystem of PortAventura World at Randstad Digital, built for WebViews and seasonal traffic peaks; before that, the checkout of Mercado Libre, one of the largest e-commerce platforms in the world.",
+  "experience": [
+    {
+      "company": "Randstad Digital",
+      "client": "PortAventura World",
+      "role": "Senior Software Engineer",
+      "dates": "Jan 2026 – Present",
+      "location": "Zaragoza, Spain",
+      "highlights": [
+        "Architecture: React and TypeScript solutions for high-demand peaks, focused on WebView-based apps.",
+        "Performance: Core Web Vitals optimization for fast, seamless navigation.",
+        "Leadership: technical standards, mentoring and code reviews.",
+        "Integration: real-time data with the backend teams (Node.js, NestJS).",
+        "Quality: automated testing and complex application state with Zustand."
+      ]
+    },
+    {
+      "company": "Meliorar",
+      "role": "Software Engineer",
+      "dates": "Aug 2025 – Jan 2026",
+      "location": "Zaragoza, Spain",
+      "highlights": [
+        "Backend business logic with Node.js, Express, TypeScript and PostgreSQL (Prisma).",
+        "Integrations with external APIs, with consistent data and robust error handling.",
+        "Workflow and database performance improvements; unit tests against regressions."
+      ]
+    },
+    {
+      "company": "Mercado Libre",
+      "role": "Software Engineer",
+      "dates": "Jan 2024 – Feb 2025",
+      "location": "Buenos Aires, Argentina",
+      "highlights": [
+        "Checkout payment gateway and purchase review.",
+        "Maintained and documented a shared React component library in Storybook for consuming teams.",
+        "Tests with Testing Library and end-to-end suites with Playwright and Cucumber.",
+        "Deployments monitored in New Relic and performance tracked in Datadog."
+      ]
+    },
+    {
+      "company": "Mercado Libre",
+      "role": "Analyst Software Developer",
+      "dates": "Nov 2021 – Dec 2023",
+      "location": "Buenos Aires, Argentina",
+      "highlights": [
+        "Checkout payment gateway and purchase review.",
+        "New features in React alongside legacy Backbone.js, Marionette.js and Handlebars code.",
+        "Styling with Sass and debugging with Kibana."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "label": "Frontend",
+      "items": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Astro",
+        "Tailwind CSS",
+        "CSS Modules",
+        "Zustand",
+        "Redux"
+      ]
+    },
+    {
+      "label": "Quality",
+      "items": [
+        "Testing Library",
+        "Jest",
+        "Vitest",
+        "Playwright",
+        "Cucumber",
+        "Accessibility (WCAG)"
+      ]
+    },
+    {
+      "label": "Performance and observability",
+      "items": ["Core Web Vitals", "Datadog", "New Relic", "Kibana", "Grafana"]
+    },
+    {
+      "label": "Backend and tooling",
+      "items": [
+        "Node.js",
+        "NestJS",
+        "Express",
+        "PostgreSQL",
+        "MongoDB",
+        "GitHub Actions",
+        "Storybook"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Platzi",
+      "program": "English Academy",
+      "dates": "2025 – 2026"
+    },
+    {
+      "school": "Platzi",
+      "program": "TypeScript Fundamentals",
+      "dates": "2025"
+    },
+    {
+      "school": "Da Vinci School",
+      "program": "Systems Analyst",
+      "dates": "2022 – 2023"
+    },
+    {
+      "school": "Digital House",
+      "program": "Frontend Developer",
+      "dates": "2021 – 2022"
+    },
+    {
+      "school": "Platzi",
+      "program": "Frontend Architect",
+      "dates": "2020 – 2021"
+    }
+  ],
+  "languages": [
+    {
+      "name": "Spanish",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "Professional working"
+    },
+    {
+      "name": "Italian",
+      "level": "Elementary (A2)"
+    }
+  ]
+}
