@@ -9,6 +9,8 @@ import homeEn from './home/en.json';
 import homeEs from './home/es.json';
 import notFoundEn from './not-found/en.json';
 import notFoundEs from './not-found/es.json';
+import privacyEn from './privacy/en.json';
+import privacyEs from './privacy/es.json';
 import profileEn from './profile/en.json';
 import profileEs from './profile/es.json';
 import projectPageEn from './project-page/en.json';
@@ -21,6 +23,7 @@ const dictionaries = {
   'contact-email': { en: contactEmailEn, es: contactEmailEs satisfies typeof contactEmailEn },
   home: { en: homeEn, es: homeEs satisfies typeof homeEn },
   'not-found': { en: notFoundEn, es: notFoundEs satisfies typeof notFoundEn },
+  privacy: { en: privacyEn, es: privacyEs satisfies typeof privacyEn },
   profile: { en: profileEn, es: profileEs satisfies typeof profileEn },
   'project-page': { en: projectPageEn, es: projectPageEs satisfies typeof projectPageEn },
 } as const;

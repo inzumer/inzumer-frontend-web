@@ -74,6 +74,25 @@ The PDF is drawn with `@react-pdf/renderer` in `src/services/cv-pdf`; headings h
 spacing because ATS parsers read spaced capitals as separate letters. To change the CV, edit the
 profile; the headings and file names live in `src/i18n/cv`.
 
+## Analytics
+
+- **Vercel Web Analytics and Speed Insights**: visits and Core Web Vitals, without cookies.
+- **Google Analytics 4**, only after consent. `ConsentManager` shows the lib's `CookieConsent`
+  banner while there is no answer, saves it in `inzumer:settings` and loads gtag.js only when
+  `analytics` is allowed (no ad signals). The footer's **Cookies** link (`#cookies`) reopens the
+  preferences; `/{lang}/privacy` explains what is collected. Without `PUBLIC_GA_ID` in Vercel
+  nothing loads and no banner shows.
+
+| Event           | When                                                                | Parameters                            |
+| --------------- | ------------------------------------------------------------------- | ------------------------------------- |
+| `ui_click`      | A click on any element with a tracking id (`<scope>-<kind>-<name>`) | `element_id`, `scope`, `kind`, `name` |
+| `generate_lead` | The contact form was sent                                           | `form`                                |
+| `contact_error` | The contact form failed                                             | `form`                                |
+| `file_download` | The CV PDF (GA4 enhanced measurement)                               | automatic                             |
+
+In GA4, register `element_id`, `scope`, `kind` and `name` as event-scoped custom dimensions and
+mark `generate_lead` as a key event.
+
 ## Contact emails
 
 `/api/contact` validates the form, drops bots (honeypot) and floods (5 per address every 10

@@ -13,6 +13,7 @@ fontsource
 gitflow
 Gmail
 GMAIL
+gtag
 Handlebars
 hotfixes
 hreflang
