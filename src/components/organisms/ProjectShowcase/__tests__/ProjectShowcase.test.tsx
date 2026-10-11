@@ -9,7 +9,7 @@ const projects = [
   project('smart', 'Coupons'),
 ];
 const labels = {
-  list: 'Elegí un proyecto',
+  list: 'Elige un proyecto',
   view: 'Ver proyecto',
   previous: 'Proyecto anterior',
   next: 'Proyecto siguiente',

@@ -8,13 +8,13 @@ const labels: ContactFormLabels = {
   message: 'Mensaje',
   placeholderName: 'Tu nombre',
   placeholderEmail: 'tu@correo.com',
-  placeholderMessage: 'Contame',
+  placeholderMessage: 'Cuéntame',
   send: 'Enviar mensaje',
   sending: 'Enviando…',
   success: 'Mensaje enviado.',
   error: 'No se pudo enviar.',
-  invalid: 'Revisá los campos marcados.',
-  honeypot: 'Dejá este campo vacío',
+  invalid: 'Revisa los campos marcados.',
+  honeypot: 'Deja este campo vacío',
 };
 
 const fill = async (user: ReturnType<typeof userEvent.setup>) => {
@@ -37,7 +37,7 @@ describe('ContactForm', () => {
     expect(send).not.toHaveBeenCalled();
     expect(screen.getByLabelText('Nombre')).toHaveAttribute('aria-invalid', 'true');
     expect(screen.getByLabelText('Correo electrónico')).toHaveAttribute('aria-invalid', 'true');
-    expect(screen.getByRole('status')).toHaveTextContent('Revisá los campos marcados.');
+    expect(screen.getByRole('status')).toHaveTextContent('Revisa los campos marcados.');
   });
 
   it('should cover the page with the loader and its questions while sending', async () => {

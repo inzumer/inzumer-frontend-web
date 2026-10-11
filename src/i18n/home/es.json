@@ -48,7 +48,7 @@
   },
   "projects": {
     "title": "Proyectos",
-    "listLabel": "Elegí un proyecto",
+    "listLabel": "Elige un proyecto",
     "view": "Ver proyecto",
     "previous": "Proyecto anterior",
     "next": "Proyecto siguiente",
@@ -129,18 +129,18 @@
   },
   "contact": {
     "title": "Salúdame",
-    "text": "¿Una pregunta, una propuesta o simplemente un saludo? Escribime: te llega una confirmación al instante y te respondo desde inzumer@gmail.com.",
+    "text": "¿Una pregunta, una propuesta o simplemente un saludo? Escríbeme: te llega una confirmación al instante y te respondo desde inzumer@gmail.com.",
     "name": "Nombre",
     "email": "Correo electrónico",
     "message": "Mensaje",
     "placeholderName": "Tu nombre",
     "placeholderEmail": "tu@correo.com",
-    "placeholderMessage": "Contame qué tenés en mente",
+    "placeholderMessage": "Cuéntame qué tienes en mente",
     "send": "Enviar mensaje",
     "sending": "Enviando…",
-    "success": "Mensaje enviado. Revisá tu correo: te llega una confirmación.",
-    "error": "No se pudo enviar el mensaje. Probá de nuevo o escribime a inzumer@gmail.com.",
-    "invalid": "Revisá los campos marcados.",
-    "honeypot": "Dejá este campo vacío"
+    "success": "Mensaje enviado. Revisa tu correo: te llega una confirmación.",
+    "error": "No se pudo enviar el mensaje. Prueba de nuevo o escríbeme a inzumer@gmail.com.",
+    "invalid": "Revisa los campos marcados.",
+    "honeypot": "Deja este campo vacío"
   }
 }
