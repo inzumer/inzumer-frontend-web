@@ -17,17 +17,17 @@ Senior Frontend Engineer.
 
 Key commands (Node from `.nvmrc`, pnpm from `packageManager`):
 
-| Command              | What it does                                                   |
-| -------------------- | -------------------------------------------------------------- |
-| `pnpm dev`           | Astro dev server                                               |
-| `pnpm typecheck`     | `astro check` (TS + `.astro`)                                  |
-| `pnpm lint`          | ESLint (TS, React, a11y, Astro, Vitest)                        |
-| `pnpm test:coverage` | Vitest with the **90%** coverage gate                          |
-| `pnpm build`         | Static pages in `dist/client`, the Vercel output in `.vercel/` |
-| `pnpm format`        | Prettier (imports sorted, Astro + Tailwind plugins)            |
-| `pnpm spellcheck`    | cspell (en + es; project words in `.cspell/project-words.txt`) |
-| `pnpm audit:a11y`    | axe (WCAG 2.2 AA) on every built page, light and dark          |
-| `pnpm validate`      | typecheck + lint + test:coverage + build                       |
+| Command              | What it does                                                           |
+| -------------------- | ---------------------------------------------------------------------- |
+| `pnpm dev`           | Astro dev server                                                       |
+| `pnpm typecheck`     | `astro check` (TS + `.astro`)                                          |
+| `pnpm lint`          | ESLint (TS, React, a11y, Astro, Vitest)                                |
+| `pnpm test:coverage` | Vitest with the **90%** coverage gate                                  |
+| `pnpm build`         | Static pages in `dist/client`, the Vercel output in `.vercel/`         |
+| `pnpm format`        | Prettier (imports sorted, Astro + Tailwind plugins)                    |
+| `pnpm spellcheck`    | cspell (en + es; project words in `.cspell/project-words.txt`)         |
+| `pnpm audit:a11y`    | axe (WCAG 2.2 AA) on every built page, light and dark                  |
+| `pnpm validate`      | every CI step: typecheck, lint, format, spellcheck, tests, build, a11y |
 
 ## Non-negotiable conventions
 

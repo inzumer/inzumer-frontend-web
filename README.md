@@ -21,14 +21,14 @@ pnpm dev
 
 Node comes from `.nvmrc` and pnpm from `packageManager`.
 
-| Command             | What it does                                    |
-| ------------------- | ----------------------------------------------- |
-| `pnpm dev`          | Development server                              |
-| `pnpm build`        | Production build                                |
-| `pnpm validate`     | typecheck, lint, tests with coverage and build  |
-| `pnpm format:check` | Prettier                                        |
-| `pnpm spellcheck`   | cspell                                          |
-| `pnpm audit:a11y`   | axe (WCAG 2.2 AA) on every page, light and dark |
+| Command             | What it does                                                     |
+| ------------------- | ---------------------------------------------------------------- |
+| `pnpm dev`          | Development server                                               |
+| `pnpm build`        | Production build                                                 |
+| `pnpm validate`     | every CI step: types, lint, format, spelling, tests, build, a11y |
+| `pnpm format:check` | Prettier                                                         |
+| `pnpm spellcheck`   | cspell                                                           |
+| `pnpm audit:a11y`   | axe (WCAG 2.2 AA) on every page, light and dark                  |
 
 ## Structure
 
