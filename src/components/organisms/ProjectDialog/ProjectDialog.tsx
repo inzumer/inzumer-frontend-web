@@ -4,7 +4,7 @@ import {
   type GalleryImage,
   type ProjectGalleryProps,
 } from '@components/molecules/ProjectGallery';
-import { trackingProps } from '@utils';
+import { trackingId, trackingProps } from '@utils';
 
 export interface ProjectDetail {
   slug: string;
@@ -54,6 +54,9 @@ export const ProjectDialog = ({ project, open, onClose, labels }: ProjectDialogP
   if (!project) {
     return null;
   }
+
+  // The lib's X renders it as id and data-testid.
+  const closeId = trackingId('project-dialog', 'button', 'close', project.slug);
 
   // The lib keeps this title and the X in place and scrolls the body on the panel's edge.
   const title = (
@@ -136,6 +139,7 @@ export const ProjectDialog = ({ project, open, onClose, labels }: ProjectDialogP
       onClose={onClose}
       title={title}
       closeLabel={labels.close}
+      closeId={closeId}
       maxHeight="tall"
       className={`max-w-[1080px] rounded-[2.4rem] ${panelStyles}`}
     >
@@ -147,6 +151,7 @@ export const ProjectDialog = ({ project, open, onClose, labels }: ProjectDialogP
       onClose={onClose}
       title={title}
       closeLabel={labels.close}
+      closeId={closeId}
       className={`rounded-t-[2.4rem] ${panelStyles}`}
     >
       {content}

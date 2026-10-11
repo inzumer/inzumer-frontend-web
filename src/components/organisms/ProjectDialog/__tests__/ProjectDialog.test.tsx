@@ -51,7 +51,11 @@ describe('ProjectDialog', () => {
     const user = userEvent.setup();
     render(<ProjectDialog project={belo} open onClose={onClose} labels={dialogLabels} />);
 
-    await user.click(screen.getByRole('button', { name: 'Cerrar proyecto' }));
+    const close = screen.getByRole('button', { name: 'Cerrar proyecto' });
+
+    expect(close).toHaveAttribute('id', 'project-dialog-button-close-belo');
+    expect(close).toHaveAttribute('data-testid', 'project-dialog-button-close-belo');
+    await user.click(close);
 
     expect(onClose).toHaveBeenCalledOnce();
   });
