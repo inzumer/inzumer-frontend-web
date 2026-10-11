@@ -12,6 +12,8 @@ export interface SiteMenuProps {
   links: SiteMenuLink[];
   /** The other language of the current page. */
   language: { href: string; label: string; lang: string };
+  /** The PDF CV, downloaded with its file name. */
+  cv: { href: string; label: string; fileName: string };
   labels: { open: string; close: string; title: string; navigation: string };
 }
 
@@ -23,7 +25,7 @@ const linkClass =
   'group flex min-h-11 items-baseline gap-5 text-[clamp(3.2rem,7vw,6.4rem)] leading-[1.1] font-light tracking-[-0.035em] uppercase transition-colors hover:text-(--text-secondary) focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--border-focus) motion-reduce:transition-none';
 
 /** Hamburger fixed on the top end corner; opens the sections and the language over the whole screen. */
-export const SiteMenu = ({ links, language, labels }: SiteMenuProps) => {
+export const SiteMenu = ({ links, language, cv, labels }: SiteMenuProps) => {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const close = () => setOpen(false);
@@ -80,15 +82,25 @@ export const SiteMenu = ({ links, language, labels }: SiteMenuProps) => {
             </a>
           ))}
         </nav>
-        <a
-          id={trackingId('menu', 'link', 'language', language.lang)}
-          href={language.href}
-          hrefLang={language.lang}
-          lang={language.lang}
-          className="inline-flex min-h-11 w-fit items-center rounded-full border border-(--border-strong) px-5 text-[1.3rem] font-medium tracking-[0.14em]"
-        >
-          {language.label}
-        </a>
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            id={trackingId('menu', 'link', 'language', language.lang)}
+            href={language.href}
+            hrefLang={language.lang}
+            lang={language.lang}
+            className="inline-flex min-h-11 w-fit items-center rounded-full border border-(--border-strong) px-5 text-[1.3rem] font-medium tracking-[0.14em]"
+          >
+            {language.label}
+          </a>
+          <a
+            id={trackingId('menu', 'link', 'cv')}
+            href={cv.href}
+            download={cv.fileName}
+            className="inline-flex min-h-11 w-fit items-center rounded-full border border-(--border-strong) px-5 text-[1.3rem] font-medium"
+          >
+            {cv.label}
+          </a>
+        </div>
       </Drawer>
     </>
   );

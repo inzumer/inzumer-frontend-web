@@ -26,9 +26,6 @@
     "themeToDark": "Switch to dark mode",
     "themeToLight": "Switch to light mode"
   },
-  "cv": {
-    "download": "Download CV"
-  },
   "footer": {
     "disclaimer": "© {year} Developed by @inzumer — or Nahuel Zamuner, if you prefer."
   },
