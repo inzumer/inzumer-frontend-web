@@ -3,6 +3,7 @@ import '@styles/global.css';
 import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import { PageLoader } from '@components/organisms/PageLoader';
 import { SiteMenu } from '@components/organisms/SiteMenu';
 import { SiteRail } from '@components/organisms/SiteRail';
 import { OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
@@ -28,6 +29,7 @@ interface Props {
 
 const { lang, title, description, structuredData = [], noindex = false } = Astro.props;
 const common = getTranslations(lang, 'common');
+const cv = getTranslations(lang, 'cv');
 const pageTitle = title ? `${title} · ${common.meta.siteName}` : common.meta.title;
 const pageDescription = description ?? common.meta.description;
 const site = Astro.site ?? Astro.url;
@@ -40,7 +42,7 @@ const alternates = LOCALES.map((locale) => ({
 const OG_LOCALES: Record<Locale, string> = { en: 'en_US', es: 'es_ES' };
 const otherLang = LOCALES.find((locale) => locale !== lang) ?? lang;
 const home = localizedPath(lang, 'home');
-const sections = ['about', 'services', 'projects', 'experience', 'contact'] as const;
+const sections = ['about', 'services', 'projects', 'ecosystem', 'experience', 'contact'] as const;
 ---
 
 <!doctype html>
@@ -91,9 +93,11 @@ const sections = ['about', 'services', 'projects', 'experience', 'contact'] as c
     >
       {common.skipLink}
     </a>
+    <PageLoader client:idle label={common.loader.page} messages={common.loader.messages} />
     <SiteMenu
       client:idle
       links={sections.map((key) => ({ key, href: `${home}#${key}`, label: common.nav[key] }))}
+      cv={{ href: `/${lang}/cv.pdf`, label: cv.download, fileName: cv.fileName }}
       language={{
         href: switchLocalePath(pathname, otherLang),
         label: otherLang.toUpperCase(),

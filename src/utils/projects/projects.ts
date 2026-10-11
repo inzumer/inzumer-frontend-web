@@ -13,3 +13,16 @@ export const projectsFor = <T extends ProjectEntry>(entries: T[], lang: Locale):
   entries
     .filter((entry) => entry.id.startsWith(`${lang}/`))
     .sort((a, b) => a.data.order - b.data.order);
+
+interface ProcessedImage {
+  src: string;
+  attributes: Record<string, unknown>;
+}
+
+/** An optimized image as the gallery needs it; falls back to 4:3 when Astro gives no size. */
+export const galleryImage = ({ src, attributes }: ProcessedImage, alt: string) => ({
+  src,
+  width: Number(attributes['width'] ?? 1200),
+  height: Number(attributes['height'] ?? 900),
+  alt,
+});

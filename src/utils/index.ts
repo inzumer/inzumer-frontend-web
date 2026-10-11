@@ -10,3 +10,4 @@ export * from './contact';
 export * from './seo';
 export * from './projects';
 export * from './rate-limit';
+export * from './cv';

@@ -51,7 +51,78 @@
     "listLabel": "Choose a project",
     "view": "View project",
     "previous": "Previous project",
-    "next": "Next project"
+    "next": "Next project",
+    "dialog": {
+      "close": "Close project",
+      "stack": "Stack",
+      "visit": "Visit",
+      "page": "Open the full page",
+      "gallery": {
+        "label": "Project screens",
+        "previous": "Previous screen",
+        "next": "Next screen",
+        "slide": "Screen",
+        "open": "opens at full size"
+      }
+    }
+  },
+  "ecosystem": {
+    "title": "Ecosystem",
+    "intro": "Every project I start stands on the same base: a design system, tokens, emails, docs and CI that I maintain as packages. A new product gets accessibility, tests and releases from day one, and the base can move to any team that needs it.",
+    "ai": {
+      "title": "AI with rules",
+      "text": "I work with AI agents every day, and every repo tells them how: guides with the conventions, specialized agents and the same checks a person goes through. AI speeds up the work; the standards and the final review stay with me.",
+      "points": [
+        "Agent guides in every repo, shared like the rest of the code.",
+        "The same rules for people and agents: tests, accessibility and clean code.",
+        "Quality gates on every change: 90% coverage, WCAG 2.2 AA audits and zero known vulnerabilities.",
+        "Human review before anything reaches production."
+      ]
+    },
+    "pieces": [
+      {
+        "id": "ui-library",
+        "name": "UI library",
+        "text": "React components with accessibility built in, ready for the web and for apps in WebViews, documented in Storybook.",
+        "href": "https://ui-web.inzumer.com",
+        "linkLabel": "See it"
+      },
+      {
+        "id": "tokens",
+        "name": "Tokens",
+        "text": "Colors, type, spacing and themes in one package that feeds the components, the emails and the docs.",
+        "href": "https://github.com/inzumer/inzumer-tokens",
+        "linkLabel": "See it"
+      },
+      {
+        "id": "emails",
+        "name": "Emails",
+        "text": "React email templates that render in every client, each brand with its own theme.",
+        "href": "https://ui-emails.inzumer.com",
+        "linkLabel": "See it"
+      },
+      {
+        "id": "docs",
+        "name": "Docs",
+        "text": "One site that documents every package and reads well on a phone.",
+        "href": "https://ui-docs.inzumer.com",
+        "linkLabel": "See it"
+      },
+      {
+        "id": "ci",
+        "name": "CI",
+        "text": "Shared GitHub workflows: tests with coverage, security, duplication, accessibility and releases.",
+        "href": "https://github.com/inzumer/inzumer-ci",
+        "linkLabel": "See it"
+      },
+      {
+        "id": "configs",
+        "name": "Configs",
+        "text": "ESLint, Prettier and TypeScript set once and reused, so every repo is written the same way.",
+        "href": "https://github.com/inzumer",
+        "linkLabel": "See it"
+      }
+    ]
   },
   "experience": {
     "title": "Experience"

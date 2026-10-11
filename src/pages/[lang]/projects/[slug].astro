@@ -1,10 +1,18 @@
 ---
-import { Image } from 'astro:assets';
+import { getImage, Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import { Breadcrumbs, Icon, RichText } from '@inzumer/ui-library';
+import { ProjectGallery } from '@components/molecules/ProjectGallery';
 import { getTranslations } from '@i18n';
 import BaseLayout from '@layouts/base-layout.astro';
-import { breadcrumbSchema, localizedPath, projectSlug, trackingId, type Locale } from '@utils';
+import {
+  breadcrumbSchema,
+  galleryImage,
+  localizedPath,
+  projectSlug,
+  trackingId,
+  type Locale,
+} from '@utils';
 import { LOCALES } from '@utils/locale';
 
 export const getStaticPaths = async () => {
@@ -21,6 +29,11 @@ const lang = Astro.params.lang as Locale;
 const { entry } = Astro.props;
 const { data } = entry;
 const { Content } = await render(entry);
+const screens = await Promise.all(
+  data.gallery.map(async (image) =>
+    galleryImage(await getImage({ src: image.src, width: 1600, format: 'webp' }), image.alt),
+  ),
+);
 const t = getTranslations(lang, 'project-page');
 const homeHref = localizedPath(lang, 'home');
 const projectsHref = `${homeHref}#projects`;
@@ -119,7 +132,7 @@ const trail = [
       </div>
     </div>
 
-    {data.gallery.length > 0 && (
+    {screens.length > 0 && (
       <section aria-labelledby="gallery-title" class="flex flex-col gap-8">
         <RichText
           as="h2"
@@ -130,19 +143,12 @@ const trail = [
         >
           {t.gallery}
         </RichText>
-        <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {data.gallery.map((image) => (
-            <li class="overflow-hidden rounded-[1.8rem] border border-(--border-default)">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                widths={[480, 800]}
-                sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-                class="aspect-square w-full object-cover"
-              />
-            </li>
-          ))}
-        </ul>
+        <ProjectGallery
+          client:visible
+          slug={projectSlug(entry.id)}
+          images={screens}
+          labels={t.galleryCarousel}
+        />
       </section>
     )}
 

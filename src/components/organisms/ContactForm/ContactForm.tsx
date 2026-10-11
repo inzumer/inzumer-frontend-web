@@ -1,5 +1,6 @@
 import { useState, type SyntheticEvent } from 'react';
 import { Button, Input, RichText, Textarea } from '@inzumer/ui-library';
+import { SiteLoader } from '@components/molecules/SiteLoader';
 import { sendContact } from '@services/contact';
 import { invalidContactFields, trackingId, type ContactField, type Locale } from '@utils';
 
@@ -21,6 +22,8 @@ export interface ContactFormLabels {
 export interface ContactFormProps {
   lang: Locale;
   labels: ContactFormLabels;
+  /** Questions shown while the message is on its way. */
+  loaderMessages: readonly string[];
   send?: typeof sendContact;
 }
 
@@ -29,7 +32,12 @@ type Status = 'idle' | 'sending' | 'success' | 'error' | 'invalid';
 const field = (form: FormData, name: string): string => String(form.get(name) ?? '');
 
 /** Contact form: checks the fields here, sends them to the endpoint and announces the result. */
-export const ContactForm = ({ lang, labels, send = sendContact }: ContactFormProps) => {
+export const ContactForm = ({
+  lang,
+  labels,
+  loaderMessages,
+  send = sendContact,
+}: ContactFormProps) => {
   const [status, setStatus] = useState<Status>('idle');
   const [invalid, setInvalid] = useState<ContactField[]>([]);
 
@@ -71,6 +79,7 @@ export const ContactForm = ({ lang, labels, send = sendContact }: ContactFormPro
 
   return (
     <form noValidate onSubmit={onSubmit} className="flex flex-col gap-6">
+      {status === 'sending' && <SiteLoader label={labels.sending} messages={loaderMessages} />}
       <Input
         id={trackingId('contact', 'input', 'name')}
         name="name"

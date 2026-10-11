@@ -16,6 +16,7 @@ GMAIL
 Handlebars
 hotfixes
 hreflang
+innerhtml
 inzumer
 Inzumer
 INZUMER
@@ -51,6 +52,7 @@ tablist
 tabpanel
 tenés
 testeados
+testid
 unstub
 vercel
 vitest

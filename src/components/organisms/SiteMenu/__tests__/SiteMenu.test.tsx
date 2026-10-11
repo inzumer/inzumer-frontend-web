@@ -10,6 +10,7 @@ const renderMenu = () =>
         { key: 'contact', href: '/es#contact', label: 'Contacto' },
       ]}
       language={{ href: '/en', label: 'EN', lang: 'en' }}
+      cv={{ href: '/es/cv.pdf', label: 'Descargar CV (PDF)', fileName: 'cv-es.pdf' }}
       labels={{ open: 'Abrir menú', close: 'Cerrar menú', title: 'Menú', navigation: 'Principal' }}
     />,
   );
@@ -30,6 +31,10 @@ describe('SiteMenu', () => {
       'menu-link-projects',
     );
     expect(screen.getByRole('link', { name: 'EN' })).toHaveAttribute('hreflang', 'en');
+    expect(screen.getByRole('link', { name: 'Descargar CV (PDF)' })).toHaveAttribute(
+      'download',
+      'cv-es.pdf',
+    );
   });
 
   it('should close when a section is chosen', async () => {
@@ -39,6 +44,22 @@ describe('SiteMenu', () => {
     await user.click(screen.getByRole('button', { name: 'Abrir menú' }));
     await user.click(screen.getByRole('link', { name: 'Contacto' }));
 
+    expect(screen.getByRole('button', { name: 'Abrir menú' })).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    );
+  });
+
+  it('should close from the X in the hamburger corner', async () => {
+    const user = userEvent.setup();
+    renderMenu();
+
+    await user.click(screen.getByRole('button', { name: 'Abrir menú' }));
+    const close = screen.getByRole('button', { name: 'Cerrar menú' });
+
+    expect(close).toHaveAttribute('id', 'menu-button-close');
+    expect(close.className).toContain('right-[calc(2rem_+_env(safe-area-inset-right))]');
+    await user.click(close);
     expect(screen.getByRole('button', { name: 'Abrir menú' })).toHaveAttribute(
       'aria-expanded',
       'false',

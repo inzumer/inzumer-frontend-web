@@ -1,18 +1,7 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ProjectShowcase, type ShowcaseProject } from '../ProjectShowcase';
-
-const project = (slug: string, name: string): ShowcaseProject => ({
-  slug,
-  name,
-  title: `${name} title`,
-  company: 'Mercado Libre',
-  kind: 'Frontend web',
-  summary: `${name} summary`,
-  stack: ['React', 'TypeScript', 'Sass', 'Jest', 'Datadog'],
-  href: `/es/projects/${slug}`,
-  cover: { src: `/${slug}.webp`, width: 800, height: 600, alt: `${name} cover` },
-});
+import { dialogLabels, projectFixture as project } from '@test/projects';
+import { ProjectShowcase } from '../ProjectShowcase';
 
 const projects = [
   project('payments-v2', 'Payments'),
@@ -20,10 +9,11 @@ const projects = [
   project('smart', 'Coupons'),
 ];
 const labels = {
-  list: 'Elegí un proyecto',
+  list: 'Elige un proyecto',
   view: 'Ver proyecto',
   previous: 'Proyecto anterior',
   next: 'Proyecto siguiente',
+  dialog: dialogLabels,
 };
 
 describe('ProjectShowcase', () => {
@@ -37,9 +27,9 @@ describe('ProjectShowcase', () => {
     expect(screen.getByRole('tabpanel', { name: 'Payments' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: 'Payments title' })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Payments cover' })).toHaveAttribute('loading', 'eager');
-    expect(screen.getByRole('link', { name: 'Ver proyecto' })).toHaveAttribute(
-      'href',
-      '/es/projects/payments-v2',
+    expect(screen.getByRole('button', { name: 'Ver proyecto' })).toHaveAttribute(
+      'aria-haspopup',
+      'dialog',
     );
     expect(screen.queryByText('Datadog')).not.toBeInTheDocument();
   });
@@ -82,6 +72,18 @@ describe('ProjectShowcase', () => {
     expect(screen.getByRole('tab', { name: 'Payments' })).toHaveAttribute('aria-selected', 'true');
     await user.click(screen.getByRole('button', { name: 'Proyecto anterior' }));
     expect(screen.getByRole('tab', { name: 'Coupons' })).toHaveAttribute('aria-selected', 'true');
+  });
+
+  it('should open the selected project in a dialog and close it', async () => {
+    const user = userEvent.setup();
+    render(<ProjectShowcase title="Proyectos" projects={projects} labels={labels} />);
+
+    await user.click(screen.getByRole('tab', { name: 'Belo' }));
+    await user.click(screen.getByRole('button', { name: 'Ver proyecto' }));
+
+    expect(screen.getByRole('dialog', { name: 'Belo' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Cerrar proyecto' }));
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
   });
 
   it('should render nothing without projects', () => {
