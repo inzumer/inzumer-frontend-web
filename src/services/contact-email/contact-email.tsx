@@ -17,7 +17,7 @@ export interface RenderedEmail {
   text: string;
 }
 
-/** The INZUMER wordmark in black over the email background, hosted with the email Storybook. */
+/** The INZUMER logo in black over the email background, hosted with the email Storybook. */
 const HEADER_IMAGE = 'https://ui-emails.inzumer.com/brand/inzumer-header.png';
 
 const hero = <EmailBanner src={HEADER_IMAGE} alt="INZUMER, Senior Frontend Engineer" />;
