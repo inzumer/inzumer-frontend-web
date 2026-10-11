@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { CookieConsent, type CookieChoices } from '@inzumer/ui-library';
 import { CONSENT_CATEGORIES } from '@constants';
 import { loadTagManager, revokeAnalytics } from '@services/analytics';
-import { readSettings, trackingId, updateSettings } from '@utils';
+import { readSettings, trackingId, trackingProps, updateSettings } from '@utils';
 
 export interface ConsentManagerLabels {
   title: string;
@@ -101,7 +101,7 @@ export const ConsentManager = ({ containerId, privacyHref, labels }: ConsentMana
           <>
             {labels.description}{' '}
             <a
-              id={trackingId('cookies', 'link', 'privacy')}
+              {...trackingProps('cookies', 'link', 'privacy')}
               href={privacyHref}
               className="underline underline-offset-4"
             >

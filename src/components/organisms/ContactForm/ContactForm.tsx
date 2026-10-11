@@ -2,7 +2,7 @@ import { useState, type SyntheticEvent } from 'react';
 import { Button, Input, RichText, Textarea } from '@inzumer/ui-library';
 import { SiteLoader } from '@components/molecules/SiteLoader';
 import { sendContact } from '@services/contact';
-import { invalidContactFields, trackingId, type ContactField, type Locale } from '@utils';
+import { invalidContactFields, trackingProps, type ContactField, type Locale } from '@utils';
 
 export interface ContactFormLabels {
   name: string;
@@ -81,7 +81,7 @@ export const ContactForm = ({
     <form noValidate onSubmit={onSubmit} className="flex flex-col gap-6">
       {status === 'sending' && <SiteLoader label={labels.sending} messages={loaderMessages} />}
       <Input
-        id={trackingId('contact', 'input', 'name')}
+        {...trackingProps('contact', 'input', 'name')}
         name="name"
         autoComplete="name"
         required
@@ -90,7 +90,7 @@ export const ContactForm = ({
         {...errorFor('name')}
       />
       <Input
-        id={trackingId('contact', 'input', 'email')}
+        {...trackingProps('contact', 'input', 'email')}
         name="email"
         type="email"
         autoComplete="email"
@@ -100,7 +100,7 @@ export const ContactForm = ({
         {...errorFor('email')}
       />
       <Textarea
-        id={trackingId('contact', 'input', 'message')}
+        {...trackingProps('contact', 'input', 'message')}
         name="message"
         rows={5}
         required
@@ -115,7 +115,7 @@ export const ContactForm = ({
         </label>
       </div>
       <Button
-        id={trackingId('contact', 'button', 'send')}
+        {...trackingProps('contact', 'button', 'send')}
         type="submit"
         size="lg"
         loading={status === 'sending'}
@@ -125,7 +125,7 @@ export const ContactForm = ({
       </Button>
       {/* Its id names the result (contact-status-success, -error, -invalid) for Tag Manager. */}
       <RichText
-        id={trackingId('contact', 'status', status)}
+        {...trackingProps('contact', 'status', status)}
         role="status"
         variant="p3"
         className="min-h-[2.4rem] text-(--text-secondary)"

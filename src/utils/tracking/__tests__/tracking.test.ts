@@ -1,4 +1,4 @@
-import { trackingId } from '../tracking';
+import { trackingId, trackingProps } from '../tracking';
 
 describe('trackingId', () => {
   it('should build kebab-case ids from a scope, a kind and a name', () => {
@@ -11,5 +11,12 @@ describe('trackingId', () => {
       'projects-button-tab-2-payments-v2',
     );
     expect(trackingId('rail', 'link', ' GitHub #1 ')).toBe('rail-link-git-hub-1');
+  });
+
+  it('should give the same value as id and as data-testid', () => {
+    expect(trackingProps('contact', 'status', 'success')).toStrictEqual({
+      id: 'contact-status-success',
+      'data-testid': 'contact-status-success',
+    });
   });
 });

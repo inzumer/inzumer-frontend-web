@@ -1,7 +1,7 @@
 import { GitHubIcon, IconLink, LinkedInIcon } from '@inzumer/ui-library';
 import { ThemeToggle } from '@components/molecules/ThemeToggle';
 import { SOCIAL_LINKS } from '@constants';
-import { trackingId } from '@utils';
+import { trackingProps } from '@utils';
 
 export interface SiteRailProps {
   languages: { lang: string; href: string; current: boolean }[];
@@ -17,14 +17,14 @@ export const SiteRail = ({ languages, labels }: SiteRailProps) => (
     className="fixed top-1/2 left-[calc(1.6rem_+_env(safe-area-inset-left))] z-30 hidden -translate-y-1/2 flex-col items-center gap-2 md:flex"
   >
     <IconLink
-      id={trackingId('rail', 'link', 'github')}
+      {...trackingProps('rail', 'link', 'github')}
       href={SOCIAL_LINKS.github}
       label="GitHub"
       icon={<GitHubIcon />}
       external
     />
     <IconLink
-      id={trackingId('rail', 'link', 'linkedin')}
+      {...trackingProps('rail', 'link', 'linkedin')}
       href={SOCIAL_LINKS.linkedin}
       label="LinkedIn"
       icon={<LinkedInIcon />}
@@ -35,7 +35,7 @@ export const SiteRail = ({ languages, labels }: SiteRailProps) => (
       {languages.map(({ lang, href, current }) => (
         <li key={lang}>
           <a
-            id={trackingId('rail', 'link', 'language', lang)}
+            {...trackingProps('rail', 'link', 'language', lang)}
             href={href}
             hrefLang={lang}
             lang={lang}

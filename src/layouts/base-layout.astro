@@ -15,7 +15,7 @@ import {
   localizedPath,
   switchLocalePath,
   themeScript,
-  trackingId,
+  trackingProps,
   type Locale,
   type StructuredData,
 } from '@utils';
@@ -90,7 +90,7 @@ const sections = ['about', 'services', 'projects', 'ecosystem', 'experience', 'c
   </head>
   <body class="min-h-dvh antialiased">
     <a
-      id={trackingId('layout', 'link', 'skip')}
+      {...trackingProps('layout', 'link', 'skip')}
       href="#main"
       class="fixed top-4 left-4 z-50 -translate-y-24 rounded-full bg-(--btn-primary-bg) px-6 py-3 text-(--btn-primary-text) focus:translate-y-0"
     >

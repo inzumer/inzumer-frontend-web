@@ -3,7 +3,7 @@ import { RichText } from '@inzumer/ui-library';
 import { COOKIES_HASH } from '@components/organisms/ConsentManager';
 import { getTranslations } from '@i18n';
 import BaseLayout from '@layouts/base-layout.astro';
-import { localePaths, trackingId, type Locale } from '@utils';
+import { localePaths, trackingProps, type Locale } from '@utils';
 
 export const getStaticPaths = localePaths;
 
@@ -41,7 +41,7 @@ const t = getTranslations(lang, 'privacy');
       </section>
     ))}
     <a
-      id={trackingId('privacy', 'link', 'cookies')}
+      {...trackingProps('privacy', 'link', 'cookies')}
       href={COOKIES_HASH}
       class="inline-flex min-h-11 w-fit items-center rounded-full border border-(--border-strong) px-6 text-[1.3rem] font-medium"
     >

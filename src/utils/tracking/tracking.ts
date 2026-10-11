@@ -17,3 +17,14 @@ export const trackingId = (
     .map(kebab)
     .filter((part) => part.length > 0)
     .join('-');
+
+/** The tracking id as `id` and the same `data-testid`: Tag Manager reads the first, tests the second. */
+export const trackingProps = (
+  scope: string,
+  kind: TrackingKind,
+  ...name: (string | number)[]
+): { id: string; 'data-testid': string } => {
+  const id = trackingId(scope, kind, ...name);
+
+  return { id, 'data-testid': id };
+};

@@ -1,5 +1,5 @@
 import { Carousel } from '@inzumer/ui-library';
-import { trackingId } from '@utils';
+import { trackingId, trackingProps } from '@utils';
 
 export interface GalleryImage {
   src: string;
@@ -50,7 +50,7 @@ export const ProjectGallery = ({ slug, images, labels }: ProjectGalleryProps) =>
       {images.map((image, position) => (
         <a
           key={image.src}
-          id={trackingId('gallery', 'link', 'screen', slug, position + 1)}
+          {...trackingProps('gallery', 'link', 'screen', slug, position + 1)}
           href={image.src}
           target="_blank"
           rel="noopener"
