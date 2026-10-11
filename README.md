@@ -84,7 +84,7 @@ profile; the headings and file names live in `src/i18n/cv`.
   reopens the preferences; `/{lang}/privacy` explains what is collected. There is no `<noscript>`
   iframe: without JavaScript nobody can consent.
 
-**The site pushes no events.** Everything is measured in Tag Manager from the tracking ids, so a
+**Every interactive element has an id and the same `data-testid`** (`trackingProps`), and **the site pushes no events.** Everything is measured in Tag Manager from the tracking ids, so a
 new metric needs a trigger, not code; what we want to measure must have an id.
 
 ### Tag Manager setup

@@ -1,6 +1,6 @@
 import { useId, useState } from 'react';
 import { Button, Drawer, Icon } from '@inzumer/ui-library';
-import { trackingId } from '@utils';
+import { trackingProps } from '@utils';
 
 export interface SiteMenuLink {
   key: string;
@@ -33,7 +33,7 @@ export const SiteMenu = ({ links, language, cv, labels }: SiteMenuProps) => {
   return (
     <>
       <Button
-        id={trackingId('menu', 'button', 'open')}
+        {...trackingProps('menu', 'button', 'open')}
         variant="ghost"
         size="icon"
         aria-label={labels.open}
@@ -55,7 +55,7 @@ export const SiteMenu = ({ links, language, cv, labels }: SiteMenuProps) => {
       >
         {/* The panel covers the screen, so this corner is the hamburger's. */}
         <Button
-          id={trackingId('menu', 'button', 'close')}
+          {...trackingProps('menu', 'button', 'close')}
           variant="ghost"
           size="icon"
           aria-label={labels.close}
@@ -68,7 +68,7 @@ export const SiteMenu = ({ links, language, cv, labels }: SiteMenuProps) => {
           {links.map((link, index) => (
             <a
               key={link.key}
-              id={trackingId('menu', 'link', link.key)}
+              {...trackingProps('menu', 'link', link.key)}
               href={link.href}
               onClick={close}
               className={linkClass}
@@ -85,7 +85,7 @@ export const SiteMenu = ({ links, language, cv, labels }: SiteMenuProps) => {
         </nav>
         <div className="flex flex-wrap items-center gap-3">
           <a
-            id={trackingId('menu', 'link', 'language', language.lang)}
+            {...trackingProps('menu', 'link', 'language', language.lang)}
             href={language.href}
             hrefLang={language.lang}
             lang={language.lang}
@@ -94,7 +94,7 @@ export const SiteMenu = ({ links, language, cv, labels }: SiteMenuProps) => {
             {language.label}
           </a>
           <a
-            id={trackingId('menu', 'link', 'cv')}
+            {...trackingProps('menu', 'link', 'cv')}
             href={cv.href}
             download={cv.fileName}
             className="inline-flex min-h-11 w-fit items-center rounded-full border border-(--border-strong) px-5 text-[1.3rem] font-medium"

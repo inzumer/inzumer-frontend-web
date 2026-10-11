@@ -1,7 +1,7 @@
 import { Button } from '@inzumer/ui-library';
 import { ContrastIcon } from '@components/atoms/Icons';
 import { useColorScheme } from '@hooks';
-import { trackingId } from '@utils';
+import { trackingProps } from '@utils';
 
 export interface ThemeToggleProps {
   labels: { toDark: string; toLight: string };
@@ -14,7 +14,7 @@ export const ThemeToggle = ({ labels }: ThemeToggleProps) => {
 
   return (
     <Button
-      id={trackingId('rail', 'button', 'theme')}
+      {...trackingProps('rail', 'button', 'theme')}
       variant="ghost"
       size="icon"
       aria-label={dark ? labels.toLight : labels.toDark}

@@ -1,7 +1,7 @@
 import { useId } from 'react';
 import { Icon, RichText } from '@inzumer/ui-library';
 import { SectionHeader } from '@components/molecules/SectionHeader';
-import { trackingId } from '@utils';
+import { trackingProps } from '@utils';
 
 export interface EcosystemPiece {
   id: string;
@@ -51,7 +51,7 @@ export const EcosystemSection = ({ title, intro, pieces, ai }: EcosystemSectionP
               {piece.text}
             </RichText>
             <a
-              id={trackingId('ecosystem', 'link', piece.id)}
+              {...trackingProps('ecosystem', 'link', piece.id)}
               href={piece.href}
               target="_blank"
               rel="noopener noreferrer"

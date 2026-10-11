@@ -4,7 +4,7 @@ import {
   type GalleryImage,
   type ProjectGalleryProps,
 } from '@components/molecules/ProjectGallery';
-import { trackingId } from '@utils';
+import { trackingProps } from '@utils';
 
 export interface ProjectDetail {
   slug: string;
@@ -106,7 +106,7 @@ export const ProjectDialog = ({ project, open, onClose, labels }: ProjectDialogP
           <div className="flex flex-col gap-1 border-t border-(--border-default) pt-5">
             {project.url && (
               <a
-                id={trackingId('project-dialog', 'link', 'visit', project.slug)}
+                {...trackingProps('project-dialog', 'link', 'visit', project.slug)}
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -117,7 +117,7 @@ export const ProjectDialog = ({ project, open, onClose, labels }: ProjectDialogP
               </a>
             )}
             <a
-              id={trackingId('project-dialog', 'link', 'page', project.slug)}
+              {...trackingProps('project-dialog', 'link', 'page', project.slug)}
               href={project.href}
               className={linkStyles}
             >

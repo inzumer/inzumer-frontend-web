@@ -1,5 +1,5 @@
 import { Button, Icon } from '@inzumer/ui-library';
-import { trackingId } from '@utils';
+import { trackingProps } from '@utils';
 
 export interface CarouselArrowsProps {
   /** Scope of the tracking ids (`<scope>-button-previous`). */
@@ -23,7 +23,7 @@ export const CarouselArrows = ({
 }: CarouselArrowsProps) => (
   <div className="flex gap-3">
     <Button
-      id={trackingId(scope, 'button', 'previous')}
+      {...trackingProps(scope, 'button', 'previous')}
       variant="secondary"
       size="icon"
       className="size-11 rounded-full"
@@ -35,7 +35,7 @@ export const CarouselArrows = ({
       <Icon name="chevron-left" size="sm" />
     </Button>
     <Button
-      id={trackingId(scope, 'button', 'next')}
+      {...trackingProps(scope, 'button', 'next')}
       variant="secondary"
       size="icon"
       className="size-11 rounded-full"
