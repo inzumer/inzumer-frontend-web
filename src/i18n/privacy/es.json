@@ -1,0 +1,28 @@
+{
+  "title": "Privacidad",
+  "description": "Qué recoge inzumer.com, para qué y cómo cambiarlo.",
+  "intro": "Este sitio es de Nahuel Zamuner. Recoge lo mínimo, y nada con lo que no estés de acuerdo.",
+  "sections": [
+    {
+      "title": "Preferencias",
+      "text": "Tu tema, tu idioma y tu elección de cookies se guardan en este navegador (almacenamiento local). Nunca salen de tu dispositivo."
+    },
+    {
+      "title": "Visitas y rendimiento",
+      "text": "Vercel Web Analytics y Speed Insights cuentan visitas y miden la velocidad de carga sin cookies y sin identificarte."
+    },
+    {
+      "title": "Google Analytics",
+      "text": "Solo si lo aceptas: páginas visitadas, clics en botones y enlaces, dispositivo y ubicación aproximada, para ver qué proyectos interesan. Usa cookies de Google (_ga), sin señales publicitarias. Puedes retirarlo cuando quieras."
+    },
+    {
+      "title": "Formulario de contacto",
+      "text": "Tu nombre, tu correo y tu mensaje me llegan por email a través de Resend, solo para responderte. También recibes una confirmación. El sitio no guarda ninguna copia."
+    },
+    {
+      "title": "Tus derechos",
+      "text": "Para ver, corregir o borrar tus datos, escribe a inzumer@gmail.com."
+    }
+  ],
+  "manage": "Cambiar preferencias de cookies"
+}

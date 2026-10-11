@@ -42,14 +42,18 @@ const inlineScriptHashes = [
 const csp = {
   directives: [
     "default-src 'self'",
-    "connect-src 'self'",
-    "img-src 'self' data:",
+    // Google Analytics, only after consent.
+    "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
+    "img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com",
     "font-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
   ],
-  scriptDirective: { resources: ["'self'"], hashes: inlineScriptHashes },
+  scriptDirective: {
+    resources: ["'self'", 'https://www.googletagmanager.com'],
+    hashes: inlineScriptHashes,
+  },
   styleDirective: {
     resources: [
       { resource: "'self'", kind: 'element' },

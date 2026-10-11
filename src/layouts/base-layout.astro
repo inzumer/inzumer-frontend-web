@@ -3,10 +3,11 @@ import '@styles/global.css';
 import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import { ConsentManager } from '@components/organisms/ConsentManager';
 import { PageLoader } from '@components/organisms/PageLoader';
 import { SiteMenu } from '@components/organisms/SiteMenu';
 import { SiteRail } from '@components/organisms/SiteRail';
-import { OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
+import { GA_MEASUREMENT_ID, OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
 import { getTranslations } from '@i18n';
 import {
   canonicalPath,
@@ -93,6 +94,12 @@ const sections = ['about', 'services', 'projects', 'ecosystem', 'experience', 'c
     >
       {common.skipLink}
     </a>
+    <ConsentManager
+      client:only="react"
+      measurementId={GA_MEASUREMENT_ID}
+      privacyHref={localizedPath(lang, 'privacy')}
+      labels={common.cookies}
+    />
     <PageLoader client:idle label={common.loader.page} messages={common.loader.messages} />
     <SiteMenu
       client:idle

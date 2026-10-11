@@ -1,6 +1,7 @@
 import { useState, type SyntheticEvent } from 'react';
 import { Button, Input, RichText, Textarea } from '@inzumer/ui-library';
 import { SiteLoader } from '@components/molecules/SiteLoader';
+import { trackEvent } from '@services/analytics';
 import { sendContact } from '@services/contact';
 import { invalidContactFields, trackingId, type ContactField, type Locale } from '@utils';
 
@@ -64,6 +65,8 @@ export const ContactForm = ({
     setStatus('sending');
     const sent = await send(input);
     setStatus(sent ? 'success' : 'error');
+    // GA4's lead event; it does nothing without consent.
+    trackEvent(sent ? 'generate_lead' : 'contact_error', { form: 'contact' });
 
     if (sent) {
       formElement.reset();
