@@ -4,6 +4,7 @@ import { readdirSync } from 'node:fs';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
+import sentry from '@sentry/astro';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 import { SITE_URL } from './src/constants/site.ts';
@@ -42,7 +43,7 @@ const inlineScriptHashes = [
 const csp = {
   directives: [
     "default-src 'self'",
-    "connect-src 'self'",
+    "connect-src 'self' https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://*.ingest.us.sentry.io",
     "img-src 'self' data:",
     "font-src 'self'",
     "object-src 'none'",
@@ -73,6 +74,15 @@ export default defineConfig({
     '/projects/api-store': '/en',
   },
   integrations: [
+    // Errors and performance in Sentry; off without a DSN, source maps only with an auth token.
+    sentry({
+      enabled: Boolean(process.env['PUBLIC_SENTRY_DSN']),
+      ...(process.env['SENTRY_ORG'] && { org: process.env['SENTRY_ORG'] }),
+      ...(process.env['SENTRY_PROJECT'] && { project: process.env['SENTRY_PROJECT'] }),
+      ...(process.env['SENTRY_AUTH_TOKEN'] && { authToken: process.env['SENTRY_AUTH_TOKEN'] }),
+      sourcemaps: { disable: !process.env['SENTRY_AUTH_TOKEN'] },
+      telemetry: false,
+    }),
     react(),
     sitemap({
       i18n: { defaultLocale: DEFAULT_LOCALE, locales: { es: 'es', en: 'en' } },

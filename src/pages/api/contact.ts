@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/astro';
 import type { APIRoute } from 'astro';
 import { createResendTransport, handleContact } from '@services/contact-email';
 import { createRateLimiter } from '@utils';
@@ -12,5 +13,10 @@ export const POST: APIRoute = ({ request, clientAddress }) => {
   const apiKey = import.meta.env.RESEND_API_KEY ?? process.env['RESEND_API_KEY'];
   const transport = apiKey ? createResendTransport(apiKey) : null;
 
-  return handleContact(request, { transport, allow, clientAddress });
+  return handleContact(request, {
+    transport,
+    allow,
+    clientAddress,
+    report: (error, context) => Sentry.captureException(error, { tags: { area: context } }),
+  });
 };

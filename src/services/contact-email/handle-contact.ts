@@ -7,6 +7,8 @@ export interface HandleContactOptions {
   /** Rate limit by client address; `false` means too many messages. */
   allow: (key: string) => boolean;
   clientAddress: string;
+  /** Sends a failure to monitoring (Sentry); the visitor only sees the status code. */
+  report?: (error: unknown, context: string) => void;
 }
 
 const status = (code: number) => new Response(null, { status: code });
@@ -14,7 +16,7 @@ const status = (code: number) => new Response(null, { status: code });
 /** POST /api/contact: validates, filters bots and floods, then sends both emails. */
 export const handleContact = async (
   request: Request,
-  { transport, allow, clientAddress }: HandleContactOptions,
+  { transport, allow, clientAddress, report = () => {} }: HandleContactOptions,
 ): Promise<Response> => {
   const body: unknown = await request.json().catch(() => null);
   const honeypot = (body as { website?: unknown } | null)?.website;
@@ -35,6 +37,7 @@ export const handleContact = async (
 
   if (!transport) {
     console.error('Contact form: RESEND_API_KEY is not set.');
+    report(new Error('RESEND_API_KEY is not set'), 'contact-config');
 
     return status(503);
   }
@@ -45,6 +48,7 @@ export const handleContact = async (
     return status(204);
   } catch (error) {
     console.error('Contact form: sending failed.', error);
+    report(error, 'contact-send');
 
     return status(502);
   }

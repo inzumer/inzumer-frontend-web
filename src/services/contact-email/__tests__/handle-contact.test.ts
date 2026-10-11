@@ -66,4 +66,16 @@ describe('handleContact', () => {
 
     expect((await handleContact(post(valid), options({ transport }))).status).toBe(502);
   });
+
+  it('should send each failure to monitoring with its area', async () => {
+    const report = vi.fn();
+    const error = new Error('smtp');
+    const transport = { sendMail: vi.fn().mockRejectedValue(error) };
+
+    await handleContact(post(valid), options({ transport: null, report }));
+    await handleContact(post(valid), options({ transport, report }));
+
+    expect(report).toHaveBeenNthCalledWith(1, expect.any(Error), 'contact-config');
+    expect(report).toHaveBeenNthCalledWith(2, error, 'contact-send');
+  });
 });
