@@ -1,7 +1,18 @@
 {
-  "breadcrumbs": { "label": "Ruta de navegación", "home": "Inicio", "projects": "Proyectos" },
+  "breadcrumbs": {
+    "label": "Ruta de navegación",
+    "home": "Inicio",
+    "projects": "Proyectos"
+  },
   "stack": "Stack",
   "visit": "Visitar",
   "gallery": "Pantallas",
-  "back": "Volver a proyectos"
+  "back": "Volver a proyectos",
+  "galleryCarousel": {
+    "label": "Pantallas del proyecto",
+    "previous": "Pantalla anterior",
+    "next": "Pantalla siguiente",
+    "slide": "Pantalla",
+    "open": "se abre en tamaño completo"
+  }
 }

@@ -7,7 +7,7 @@
     "body": "Recibí tu mensaje y te respondo desde esta dirección en unos días.",
     "signature": "Nahuel Zamuner — Senior Frontend Engineer",
     "button": "Visitar inzumer.com",
-    "footer": "Recibís este correo porque escribiste desde el formulario de inzumer.com."
+    "footer": "Recibes este correo porque escribiste desde el formulario de inzumer.com."
   },
   "notification": {
     "subject": "Nuevo mensaje de {name}",

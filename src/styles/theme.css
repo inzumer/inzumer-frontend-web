@@ -116,3 +116,18 @@ body {
   background: var(--text-primary);
   color: var(--surface-primary);
 }
+
+/* Carousels scroll by swipe, buttons and dots; no scrollbar under the slides. */
+[data-carousel-track] {
+  scrollbar-width: none;
+}
+
+[data-carousel-track]::-webkit-scrollbar {
+  display: none;
+}
+
+/* Dialogs scroll on their own edge with a thin bar in the site colors. */
+.dialog-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}

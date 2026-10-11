@@ -1,4 +1,4 @@
-import { projectsFor, projectSlug } from '../projects';
+import { galleryImage, projectsFor, projectSlug } from '../projects';
 
 describe('projects', () => {
   it('should take the slug from the entry id', () => {
@@ -17,5 +17,17 @@ describe('projects', () => {
       'en/payments-v2',
       'en/belo',
     ]);
+  });
+
+  it('should keep the size Astro gives and fall back to 4:3', () => {
+    expect(
+      galleryImage({ src: '/a.webp', attributes: { width: 1600, height: 1000 } }, 'Screen'),
+    ).toStrictEqual({ src: '/a.webp', width: 1600, height: 1000, alt: 'Screen' });
+    expect(galleryImage({ src: '/b.webp', attributes: {} }, 'Cover')).toStrictEqual({
+      src: '/b.webp',
+      width: 1200,
+      height: 900,
+      alt: 'Cover',
+    });
   });
 });

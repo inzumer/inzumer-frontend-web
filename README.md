@@ -43,6 +43,37 @@ src/
   utils/        locale, routes, settings, SEO, contact schema, rate limit…
 ```
 
+## Projects
+
+The home shows the projects as tabs; **View project** opens all of it without leaving the page: a
+`Modal` on desktop and a `BottomSheet` on phones (ui-library), with the screens in a carousel and
+the Markdown body. Each project keeps its own page for search engines and sharing, linked from the
+dialog. To add one, write `src/content/projects/{en,es}/<slug>.md` with its images in
+`src/assets/projects/<slug>/`.
+
+## Menu and waits
+
+The hamburger opens the sections over the whole screen (the lib's `Drawer` at full width). While a
+message is on its way, or another page of the site loads for more than 300 ms, the lib's `Loader`
+covers the page with the site background, a thin spinning ring and friendly questions
+in the page's language, from `common.loader` in `src/i18n`.
+
+## CV
+
+Built at build time from `src/i18n/profile` (the same data as the Experience section), in both
+languages, so the CV never drifts from the site:
+
+| File              | For                                                                          |
+| ----------------- | ---------------------------------------------------------------------------- |
+| `/{lang}/cv.pdf`  | People and ATS filters: one column, standard headings, real text (Helvetica) |
+| `/{lang}/cv.md`   | AI readers: plain Markdown                                                   |
+| `/{lang}/cv.json` | Tools that import [JSON Resume](https://jsonresume.org)                      |
+| `/llms.txt`       | A short guide for AI readers to every format                                 |
+
+The PDF is drawn with `@react-pdf/renderer` in `src/services/cv-pdf`; headings have no letter
+spacing because ATS parsers read spaced capitals as separate letters. To change the CV, edit the
+profile; the headings and file names live in `src/i18n/cv`.
+
 ## Contact emails
 
 `/api/contact` validates the form, drops bots (honeypot) and floods (5 per address every 10

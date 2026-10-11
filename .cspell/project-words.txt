@@ -16,13 +16,16 @@ GMAIL
 Handlebars
 hotfixes
 hreflang
+innerhtml
 inzumer
 Inzumer
 INZUMER
 jsdom
+jsonresume
 latin
 lcov
 linkedin
+llms
 logueo
 Marionette
 meliorar
@@ -51,6 +54,7 @@ tablist
 tabpanel
 tenés
 testeados
+testid
 unstub
 vercel
 vitest

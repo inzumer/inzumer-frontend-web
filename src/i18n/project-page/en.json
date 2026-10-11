@@ -1,7 +1,18 @@
 {
-  "breadcrumbs": { "label": "Breadcrumb", "home": "Home", "projects": "Projects" },
+  "breadcrumbs": {
+    "label": "Breadcrumb",
+    "home": "Home",
+    "projects": "Projects"
+  },
   "stack": "Stack",
   "visit": "Visit",
   "gallery": "Screens",
-  "back": "Back to projects"
+  "back": "Back to projects",
+  "galleryCarousel": {
+    "label": "Project screens",
+    "previous": "Previous screen",
+    "next": "Next screen",
+    "slide": "Screen",
+    "open": "opens at full size"
+  }
 }

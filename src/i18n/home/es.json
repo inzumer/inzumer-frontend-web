@@ -48,28 +48,99 @@
   },
   "projects": {
     "title": "Proyectos",
-    "listLabel": "Elegí un proyecto",
+    "listLabel": "Elige un proyecto",
     "view": "Ver proyecto",
     "previous": "Proyecto anterior",
-    "next": "Proyecto siguiente"
+    "next": "Proyecto siguiente",
+    "dialog": {
+      "close": "Cerrar proyecto",
+      "stack": "Stack",
+      "visit": "Visitar",
+      "page": "Abrir la página completa",
+      "gallery": {
+        "label": "Pantallas del proyecto",
+        "previous": "Pantalla anterior",
+        "next": "Pantalla siguiente",
+        "slide": "Pantalla",
+        "open": "se abre en tamaño completo"
+      }
+    }
+  },
+  "ecosystem": {
+    "title": "Ecosistema",
+    "intro": "Cada proyecto que empiezo se apoya en la misma base: design system, tokens, mails, documentación y CI que mantengo como paquetes. Un producto nuevo tiene accesibilidad, tests y releases desde el primer día, y esa base se puede llevar a cualquier equipo que la necesite.",
+    "ai": {
+      "title": "IA con reglas",
+      "text": "Trabajo con agentes de IA todos los días, y cada repo les dice cómo: guías con las convenciones, agentes especializados y los mismos controles que pasa una persona. La IA acelera el trabajo; los estándares y la revisión final siguen siendo míos.",
+      "points": [
+        "Guías para agentes en cada repo, compartidas como el resto del código.",
+        "Las mismas reglas para personas y agentes: tests, accesibilidad y código limpio.",
+        "Controles en cada cambio: 90% de cobertura, auditorías WCAG 2.2 AA y cero vulnerabilidades conocidas.",
+        "Revisión humana antes de que algo llegue a producción."
+      ]
+    },
+    "pieces": [
+      {
+        "id": "ui-library",
+        "name": "Librería UI",
+        "text": "Componentes React con la accesibilidad incluida, listos para la web y para apps en WebViews, documentados en Storybook.",
+        "href": "https://ui-web.inzumer.com",
+        "linkLabel": "Verlo"
+      },
+      {
+        "id": "tokens",
+        "name": "Tokens",
+        "text": "Colores, tipografía, espaciados y temas en un paquete que alimenta los componentes, los mails y la documentación.",
+        "href": "https://github.com/inzumer/inzumer-tokens",
+        "linkLabel": "Verlo"
+      },
+      {
+        "id": "emails",
+        "name": "Mails",
+        "text": "Plantillas de mails en React que se ven bien en cualquier cliente, cada marca con su tema.",
+        "href": "https://ui-emails.inzumer.com",
+        "linkLabel": "Verlo"
+      },
+      {
+        "id": "docs",
+        "name": "Docs",
+        "text": "Un sitio que documenta todos los paquetes y se lee bien desde el teléfono.",
+        "href": "https://ui-docs.inzumer.com",
+        "linkLabel": "Verlo"
+      },
+      {
+        "id": "ci",
+        "name": "CI",
+        "text": "Workflows de GitHub compartidos: tests con cobertura, seguridad, duplicación, accesibilidad y releases.",
+        "href": "https://github.com/inzumer/inzumer-ci",
+        "linkLabel": "Verlo"
+      },
+      {
+        "id": "configs",
+        "name": "Configs",
+        "text": "ESLint, Prettier y TypeScript definidos una vez y reutilizados, para que cada repo se escriba igual.",
+        "href": "https://github.com/inzumer",
+        "linkLabel": "Verlo"
+      }
+    ]
   },
   "experience": {
     "title": "Experiencia"
   },
   "contact": {
     "title": "Salúdame",
-    "text": "¿Una pregunta, una propuesta o simplemente un saludo? Escribime: te llega una confirmación al instante y te respondo desde inzumer@gmail.com.",
+    "text": "¿Una pregunta, una propuesta o simplemente un saludo? Escríbeme: te llega una confirmación al instante y te respondo desde inzumer@gmail.com.",
     "name": "Nombre",
     "email": "Correo electrónico",
     "message": "Mensaje",
     "placeholderName": "Tu nombre",
     "placeholderEmail": "tu@correo.com",
-    "placeholderMessage": "Contame qué tenés en mente",
+    "placeholderMessage": "Cuéntame qué tienes en mente",
     "send": "Enviar mensaje",
     "sending": "Enviando…",
-    "success": "Mensaje enviado. Revisá tu correo: te llega una confirmación.",
-    "error": "No se pudo enviar el mensaje. Probá de nuevo o escribime a inzumer@gmail.com.",
-    "invalid": "Revisá los campos marcados.",
-    "honeypot": "Dejá este campo vacío"
+    "success": "Mensaje enviado. Revisa tu correo: te llega una confirmación.",
+    "error": "No se pudo enviar el mensaje. Prueba de nuevo o escríbeme a inzumer@gmail.com.",
+    "invalid": "Revisa los campos marcados.",
+    "honeypot": "Deja este campo vacío"
   }
 }
