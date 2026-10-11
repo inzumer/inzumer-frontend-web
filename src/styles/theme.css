@@ -126,8 +126,8 @@ body {
   display: none;
 }
 
-/* Dialogs scroll on their own edge with a thin bar in the site colors. */
-.dialog-scroll {
+/* The lib dialogs scroll on their edge; a thin bar in the site colors. */
+[role='dialog'] .overflow-y-auto {
   scrollbar-width: thin;
   scrollbar-color: var(--border-strong) transparent;
 }

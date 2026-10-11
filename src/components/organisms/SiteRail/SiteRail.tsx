@@ -1,5 +1,4 @@
-import { IconLink, LinkedInIcon } from '@inzumer/ui-library';
-import { GitHubIcon } from '@components/atoms/Icons';
+import { GitHubIcon, IconLink, LinkedInIcon } from '@inzumer/ui-library';
 import { ThemeToggle } from '@components/molecules/ThemeToggle';
 import { SOCIAL_LINKS } from '@constants';
 import { trackingId } from '@utils';

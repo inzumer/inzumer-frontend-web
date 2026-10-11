@@ -53,7 +53,7 @@ dialog. To add one, write `src/content/projects/{en,es}/<slug>.md` with its imag
 
 ## Menu and waits
 
-The hamburger opens the sections over the whole screen (the lib's `Drawer` at full width). While a
+The hamburger opens the sections over the whole screen (the lib's `Drawer` with `size="full"`). While a
 message is on its way, or another page of the site loads for more than 300 ms, the lib's `Loader`
 covers the page with the site background, a thin spinning ring and friendly questions
 in the page's language, from `common.loader` in `src/i18n`.
