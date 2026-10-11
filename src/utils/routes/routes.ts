@@ -4,6 +4,7 @@ import { isLocale, type Locale } from '@utils/locale';
 const ROUTES = {
   home: '',
   projects: 'projects',
+  privacy: 'privacy',
 } as const;
 
 export type RouteName = keyof typeof ROUTES;

@@ -74,6 +74,55 @@ The PDF is drawn with `@react-pdf/renderer` in `src/services/cv-pdf`; headings h
 spacing because ATS parsers read spaced capitals as separate letters. To change the CV, edit the
 profile; the headings and file names live in `src/i18n/cv`.
 
+## Analytics
+
+- **Vercel Web Analytics and Speed Insights**: visits and Core Web Vitals, without cookies.
+- **Google Tag Manager** (`GTM-5Z7WHKZT`, with GA4 inside), only after consent. `ConsentManager`
+  shows the lib's `CookieConsent` banner while there is no answer, saves it in `inzumer:settings`
+  and loads `gtm.js` only when `analytics` is allowed, with Consent Mode: analytics granted, every
+  ad signal denied. Withdrawing it denies storage. The footer's **Cookies** link (`#cookies`)
+  reopens the preferences; `/{lang}/privacy` explains what is collected. There is no `<noscript>`
+  iframe: without JavaScript nobody can consent.
+
+**The site pushes no events.** Everything is measured in Tag Manager from the tracking ids, so a
+new metric needs a trigger, not code; what we want to measure must have an id.
+
+### Tag Manager setup
+
+1. **Google tag** with the GA4 measurement id, on **Initialization – All Pages**.
+2. **Custom JavaScript variable** `Tracking ID` — the closest tracked id, so a click on an icon
+   inside a button still counts:
+
+   ```js
+   function () {
+     var element = {{Click Element}};
+     var tracked = element && element.closest && element.closest('[id]');
+     return tracked ? tracked.id : undefined;
+   }
+   ```
+
+3. Triggers:
+   - **Clicks – tracked**: _Click – All Elements_ where `Tracking ID` matches RegEx
+     `-(button|link|switch)-`.
+   - **Contact sent**: _Element Visibility_, ID `contact-status-success`, _Observe DOM changes_ on.
+   - **Contact failed**: the same with `contact-status-error`.
+4. GA4 event tags: `ui_click` (parameter `element_id` = `Tracking ID`) on _Clicks – tracked_,
+   `generate_lead` on _Contact sent_ (mark it as a key event in GA4) and `contact_error` on
+   _Contact failed_. Register `element_id` as an event-scoped custom dimension.
+
+### What to measure
+
+| Goal                   | Ids                                                                                                                                                      |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Contact (conversion)   | `contact-button-send`, `contact-status-success`, `contact-status-error`, `contact-status-invalid`                                                        |
+| CV downloads           | `about-link-cv`, `menu-link-cv` (GA4 also sends `file_download`)                                                                                         |
+| Profiles               | `rail-link-linkedin`, `rail-link-github`                                                                                                                 |
+| Projects               | `projects-button-tab-<slug>`, `projects-button-view-<slug>`, `project-dialog-link-page-<slug>`, `project-dialog-link-visit-<slug>`, `project-link-visit` |
+| Screens                | `gallery-button-next-<slug>`, `gallery-button-previous-<slug>`, `gallery-link-screen-<slug>-<n>`                                                         |
+| Ecosystem and services | `ecosystem-link-<piece>`, `services-link-talk-<n>`                                                                                                       |
+| Navigation             | `menu-button-open`, `menu-link-<section>`, `menu-link-language-<lang>`, `rail-link-language-<lang>`, `rail-button-theme`                                 |
+| Consent                | `cookies-button-accept`, `cookies-button-reject`, `cookies-button-customize`, `footer-link-cookies`                                                      |
+
 ## Contact emails
 
 `/api/contact` validates the form, drops bots (honeypot) and floods (5 per address every 10

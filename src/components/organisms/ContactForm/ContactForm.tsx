@@ -123,7 +123,13 @@ export const ContactForm = ({
       >
         {status === 'sending' ? labels.sending : labels.send}
       </Button>
-      <RichText role="status" variant="p3" className="min-h-[2.4rem] text-(--text-secondary)">
+      {/* Its id names the result (contact-status-success, -error, -invalid) for Tag Manager. */}
+      <RichText
+        id={trackingId('contact', 'status', status)}
+        role="status"
+        variant="p3"
+        className="min-h-[2.4rem] text-(--text-secondary)"
+      >
         {message ?? ''}
       </RichText>
     </form>

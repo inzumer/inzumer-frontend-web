@@ -3,10 +3,11 @@ import '@styles/global.css';
 import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import { ConsentManager } from '@components/organisms/ConsentManager';
 import { PageLoader } from '@components/organisms/PageLoader';
 import { SiteMenu } from '@components/organisms/SiteMenu';
 import { SiteRail } from '@components/organisms/SiteRail';
-import { OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
+import { GTM_CONTAINER_ID, OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
 import { getTranslations } from '@i18n';
 import {
   canonicalPath,
@@ -14,6 +15,7 @@ import {
   localizedPath,
   switchLocalePath,
   themeScript,
+  trackingId,
   type Locale,
   type StructuredData,
 } from '@utils';
@@ -88,11 +90,18 @@ const sections = ['about', 'services', 'projects', 'ecosystem', 'experience', 'c
   </head>
   <body class="min-h-dvh antialiased">
     <a
+      id={trackingId('layout', 'link', 'skip')}
       href="#main"
       class="fixed top-4 left-4 z-50 -translate-y-24 rounded-full bg-(--btn-primary-bg) px-6 py-3 text-(--btn-primary-text) focus:translate-y-0"
     >
       {common.skipLink}
     </a>
+    <ConsentManager
+      client:only="react"
+      containerId={GTM_CONTAINER_ID}
+      privacyHref={localizedPath(lang, 'privacy')}
+      labels={common.cookies}
+    />
     <PageLoader client:idle label={common.loader.page} messages={common.loader.messages} />
     <SiteMenu
       client:idle

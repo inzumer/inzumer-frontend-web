@@ -43,5 +43,30 @@
       "¿Cuánto debería tardar en cargar? Menos que esto.",
       "¿Modo oscuro o modo claro?"
     ]
+  },
+  "cookies": {
+    "title": "Cookies",
+    "description": "Uso Google Analytics para ver qué proyectos lees y qué funciona en el sitio, solo si lo permites.",
+    "privacyLink": "Privacidad",
+    "accept": "Aceptar",
+    "reject": "Rechazar",
+    "customize": "Personalizar",
+    "preferencesTitle": "Preferencias de cookies",
+    "preferencesDescription": "Elige qué puede guardar este sitio. Puedes cambiarlo cuando quieras desde el pie.",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "required": "Siempre activas",
+    "necessary": {
+      "title": "Necesarias",
+      "description": "Tu tema, tu idioma y esta elección, guardados en este dispositivo."
+    },
+    "analytics": {
+      "title": "Analítica",
+      "description": "Google Analytics: páginas visitadas y clics, sin señales publicitarias."
+    }
+  },
+  "footerLinks": {
+    "privacy": "Privacidad",
+    "cookies": "Cookies"
   }
 }

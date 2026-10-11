@@ -13,6 +13,7 @@ fontsource
 gitflow
 Gmail
 GMAIL
+gtag
 Handlebars
 hotfixes
 hreflang
@@ -42,6 +43,7 @@ observabilidad
 Observabilidad
 overscroll
 Platzi
+portaventura
 PortAventura
 Prisma
 Probá
@@ -61,6 +63,7 @@ vitest
 wasi
 WCAG
 wght
+WHKZT
 Wouter
 zamuner
 Zamuner

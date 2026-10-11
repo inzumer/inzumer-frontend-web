@@ -43,5 +43,30 @@
       "How fast should it load? Faster than this.",
       "Dark mode or light mode?"
     ]
+  },
+  "cookies": {
+    "title": "Cookies",
+    "description": "I use Google Analytics to see which projects you read and what works on the site, only if you allow it.",
+    "privacyLink": "Privacy",
+    "accept": "Accept",
+    "reject": "Reject",
+    "customize": "Customize",
+    "preferencesTitle": "Cookie preferences",
+    "preferencesDescription": "Choose what this site may store. You can change it any time from the footer.",
+    "save": "Save",
+    "cancel": "Cancel",
+    "required": "Always on",
+    "necessary": {
+      "title": "Necessary",
+      "description": "Your theme, language and this choice, saved on this device."
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": "Google Analytics: pages visited and clicks, without ad signals."
+    }
+  },
+  "footerLinks": {
+    "privacy": "Privacy",
+    "cookies": "Cookies"
   }
 }
