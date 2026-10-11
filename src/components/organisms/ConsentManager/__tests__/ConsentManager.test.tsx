@@ -1,6 +1,6 @@
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { GTAG_SRC } from '@services/analytics';
+import { GTM_SRC, revokeAnalytics } from '@services/analytics';
 import { readSettings, updateSettings } from '@utils';
 import { ConsentManager, COOKIES_HASH, type ConsentManagerLabels } from '../ConsentManager';
 
@@ -20,22 +20,21 @@ const labels: ConsentManagerLabels = {
   analytics: { title: 'Analítica', description: 'Google Analytics.' },
 };
 
-const gtagScript = () => document.head.querySelector(`script[src^="${GTAG_SRC}"]`);
+const gtagScript = () => document.head.querySelector(`script[src^="${GTM_SRC}"]`);
 
-const renderManager = (measurementId: string | undefined = 'G-TEST') =>
-  render(
-    <ConsentManager measurementId={measurementId} privacyHref="/es/privacy" labels={labels} />,
-  );
+const renderManager = (containerId = 'GTM-TEST') =>
+  render(<ConsentManager containerId={containerId} privacyHref="/es/privacy" labels={labels} />);
 
 describe('ConsentManager', () => {
   afterEach(() => {
+    revokeAnalytics();
     const win = window as unknown as Record<string, unknown>;
     delete win['gtag'];
     delete win['dataLayer'];
     document.head.innerHTML = '';
   });
 
-  it('should ask first and load Google Analytics only after accepting', async () => {
+  it('should ask first and load Tag Manager only after accepting', async () => {
     const user = userEvent.setup();
     renderManager();
 
@@ -49,7 +48,7 @@ describe('ConsentManager', () => {
     expect(screen.queryByRole('button', { name: 'Aceptar' })).not.toBeInTheDocument();
   });
 
-  it('should keep Google Analytics off when rejected', async () => {
+  it('should keep Tag Manager off when rejected', async () => {
     const user = userEvent.setup();
     renderManager();
 
@@ -80,9 +79,9 @@ describe('ConsentManager', () => {
     expect(window.location.hash).toBe('');
   });
 
-  it('should show nothing without a measurement id', () => {
+  it('should show nothing without a container', () => {
     const { container } = render(
-      <ConsentManager measurementId={undefined} privacyHref="/es/privacy" labels={labels} />,
+      <ConsentManager containerId={undefined} privacyHref="/es/privacy" labels={labels} />,
     );
 
     expect(container).toBeEmptyDOMElement();

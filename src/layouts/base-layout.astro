@@ -7,7 +7,7 @@ import { ConsentManager } from '@components/organisms/ConsentManager';
 import { PageLoader } from '@components/organisms/PageLoader';
 import { SiteMenu } from '@components/organisms/SiteMenu';
 import { SiteRail } from '@components/organisms/SiteRail';
-import { GA_MEASUREMENT_ID, OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
+import { GTM_CONTAINER_ID, OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
 import { getTranslations } from '@i18n';
 import {
   canonicalPath,
@@ -96,7 +96,7 @@ const sections = ['about', 'services', 'projects', 'ecosystem', 'experience', 'c
     </a>
     <ConsentManager
       client:only="react"
-      measurementId={GA_MEASUREMENT_ID}
+      containerId={GTM_CONTAINER_ID}
       privacyHref={localizedPath(lang, 'privacy')}
       labels={common.cookies}
     />

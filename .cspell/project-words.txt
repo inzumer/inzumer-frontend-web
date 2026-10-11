@@ -63,6 +63,7 @@ vitest
 wasi
 WCAG
 wght
+WHKZT
 Wouter
 zamuner
 Zamuner

@@ -77,21 +77,29 @@ profile; the headings and file names live in `src/i18n/cv`.
 ## Analytics
 
 - **Vercel Web Analytics and Speed Insights**: visits and Core Web Vitals, without cookies.
-- **Google Analytics 4**, only after consent. `ConsentManager` shows the lib's `CookieConsent`
-  banner while there is no answer, saves it in `inzumer:settings` and loads gtag.js only when
-  `analytics` is allowed (no ad signals). The footer's **Cookies** link (`#cookies`) reopens the
-  preferences; `/{lang}/privacy` explains what is collected. Without `PUBLIC_GA_ID` in Vercel
-  nothing loads and no banner shows.
+- **Google Tag Manager** (`GTM-5Z7WHKZT`, with GA4 inside), only after consent. `ConsentManager`
+  shows the lib's `CookieConsent` banner while there is no answer, saves it in `inzumer:settings`
+  and loads `gtm.js` only when `analytics` is allowed, with Consent Mode: analytics granted, every
+  ad signal denied. Withdrawing it denies storage and stops the events. The footer's **Cookies**
+  link (`#cookies`) reopens the preferences; `/{lang}/privacy` explains what is collected. There is
+  no `<noscript>` iframe: without JavaScript nobody can consent.
+
+Events pushed to the data layer:
 
 | Event           | When                                                                | Parameters                            |
 | --------------- | ------------------------------------------------------------------- | ------------------------------------- |
 | `ui_click`      | A click on any element with a tracking id (`<scope>-<kind>-<name>`) | `element_id`, `scope`, `kind`, `name` |
 | `generate_lead` | The contact form was sent                                           | `form`                                |
 | `contact_error` | The contact form failed                                             | `form`                                |
-| `file_download` | The CV PDF (GA4 enhanced measurement)                               | automatic                             |
 
-In GA4, register `element_id`, `scope`, `kind` and `name` as event-scoped custom dimensions and
-mark `generate_lead` as a key event.
+Set up in Tag Manager:
+
+1. A **Google tag** with the GA4 measurement id, on **Initialization – All Pages**.
+2. **Data Layer Variables** `element_id`, `scope`, `kind`, `name` and `form`.
+3. **Custom Event** triggers `ui_click`, `generate_lead` and `contact_error`.
+4. A **GA4 Event** tag per trigger with the same event name and those variables as parameters.
+5. In GA4: register the parameters as event-scoped custom dimensions and mark `generate_lead` as a
+   key event. The CV download arrives as `file_download` with enhanced measurement.
 
 ## Contact emails
 
