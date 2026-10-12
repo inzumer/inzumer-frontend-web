@@ -1,14 +1,17 @@
-import { z } from 'zod';
+import { z } from 'zod/mini';
 import { LOCALES } from '@utils/locale';
 
-/** Contact form fields, checked the same way in the browser and in the endpoint. */
+// Our CSP blocks eval; without this Zod tries it once to compile faster.
+z.config({ jitless: true });
+
+/** Contact form fields, checked the same way in the browser and in the endpoint (zod/mini: light). */
 export const contactSchema = z.object({
-  name: z.string().trim().min(2).max(80),
-  email: z.email().max(254),
-  message: z.string().trim().min(10).max(5000),
+  name: z.string().check(z.trim(), z.minLength(2), z.maxLength(80)),
+  email: z.email().check(z.maxLength(254)),
+  message: z.string().check(z.trim(), z.minLength(10), z.maxLength(5000)),
   lang: z.enum(LOCALES),
   /** Honeypot: people never see it, so anything here means a bot. */
-  website: z.string().max(0).optional(),
+  website: z.optional(z.string().check(z.maxLength(0))),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

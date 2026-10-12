@@ -21,6 +21,7 @@ innerhtml
 inzumer
 Inzumer
 INZUMER
+jitless
 jsdom
 jsonresume
 latin
