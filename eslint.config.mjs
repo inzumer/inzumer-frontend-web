@@ -72,7 +72,7 @@ export default defineConfig([
   },
 
   {
-    files: ['scripts/**'],
+    files: ['scripts/**', 'ops/**'],
     rules: { 'no-console': 'off' },
   },
 

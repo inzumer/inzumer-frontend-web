@@ -10,9 +10,11 @@ dvh
 escribime
 Escribime
 fontsource
+gaawe
 gitflow
 Gmail
 GMAIL
+googtag
 gtag
 Handlebars
 hotfixes

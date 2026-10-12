@@ -131,6 +131,8 @@ visits). No Session Replay and no personal data, so it needs no consent. Without
 `PUBLIC_SENTRY_DSN` it stays off; `SENTRY_ORG`, `SENTRY_PROJECT` and `SENTRY_AUTH_TOKEN` (only in
 Vercel) upload the source maps so stack traces point at our code.
 
+Setup outside the code (Tag Manager import, GA4, Sentry dashboard and alerts): [ops/README.md](ops/README.md).
+
 ## Contact emails
 
 `/api/contact` validates the form, drops bots (honeypot) and floods (5 per address every 10
