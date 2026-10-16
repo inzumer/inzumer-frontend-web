@@ -5,7 +5,7 @@ repeated and reviewed.
 
 ## Google Tag Manager + GA4
 
-The site loads the container `GTM-5Z7WHKZT` only after the visitor accepts analytics, and pushes no
+The site loads the container `GTM-5Z7WHKZT` (the `PUBLIC_GTM_ID` variable in Vercel Production) only after the visitor accepts analytics, and pushes no
 events: everything is measured from the element ids (see README → Analytics). The container is
 configured by hand in Tag Manager (no import file); GA4 property _inzumer.com_, measurement id
 `G-FCRNWLY41Q`.

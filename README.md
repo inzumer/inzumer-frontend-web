@@ -61,7 +61,7 @@ in the page's language, from `common.loader` in `src/i18n`.
 ## Analytics
 
 - **Vercel Web Analytics and Speed Insights**: visits and Core Web Vitals, without cookies.
-- **Google Tag Manager** (`GTM-5Z7WHKZT`, with GA4 inside), only after consent. `ConsentManager`
+- **Google Tag Manager** (the container id is `PUBLIC_GTM_ID`, set in Vercel Production only; GA4 lives inside), only after consent. `ConsentManager`
   shows the lib's `CookieConsent` banner while there is no answer, saves it in `inzumer:settings`
   and loads `gtm.js` only when `analytics` is allowed, with Consent Mode: analytics granted, every
   ad signal denied. Withdrawing it denies storage. The footer's **Cookies** link (`#cookies`)
