@@ -7,7 +7,7 @@ import { ConsentManager } from '@components/organisms/ConsentManager';
 import { PageLoader } from '@components/organisms/PageLoader';
 import { SiteMenu } from '@components/organisms/SiteMenu';
 import { SiteRail } from '@components/organisms/SiteRail';
-import { GTM_CONTAINER_ID, OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
+import { OG_IMAGE, SETTINGS_STORAGE_KEY, SITE_AUTHOR } from '@constants';
 import { getTranslations } from '@i18n';
 import {
   canonicalPath,
@@ -31,7 +31,6 @@ interface Props {
 
 const { lang, title, description, structuredData = [], noindex = false } = Astro.props;
 const common = getTranslations(lang, 'common');
-const cv = getTranslations(lang, 'cv');
 const pageTitle = title ? `${title} · ${common.meta.siteName}` : common.meta.title;
 const pageDescription = description ?? common.meta.description;
 const site = Astro.site ?? Astro.url;
@@ -98,7 +97,7 @@ const sections = ['about', 'services', 'projects', 'ecosystem', 'experience', 'c
     </a>
     <ConsentManager
       client:only="react"
-      containerId={GTM_CONTAINER_ID}
+      containerId={import.meta.env.PUBLIC_GTM_ID}
       privacyHref={localizedPath(lang, 'privacy')}
       labels={common.cookies}
     />
@@ -106,7 +105,6 @@ const sections = ['about', 'services', 'projects', 'ecosystem', 'experience', 'c
     <SiteMenu
       client:idle
       links={sections.map((key) => ({ key, href: `${home}#${key}`, label: common.nav[key] }))}
-      cv={{ href: `/${lang}/cv.pdf`, label: cv.download, fileName: cv.fileName }}
       language={{
         href: switchLocalePath(pathname, otherLang),
         label: otherLang.toUpperCase(),
