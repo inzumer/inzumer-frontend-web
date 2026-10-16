@@ -1,6 +1,6 @@
 {
   "exportFormatVersion": 2,
-  "exportTime": "2026-10-11 22:34:33",
+  "exportTime": "2026-10-16 14:51:03",
   "containerVersion": {
     "path": "accounts/0/containers/0/versions/0",
     "accountId": "0",
@@ -12,7 +12,9 @@
       "containerId": "0",
       "name": "inzumer.com",
       "publicId": "GTM-5Z7WHKZT",
-      "usageContext": ["WEB"]
+      "usageContext": [
+        "WEB"
+      ]
     },
     "builtInVariable": [
       {
@@ -33,7 +35,7 @@
           {
             "type": "TEMPLATE",
             "key": "value",
-            "value": "G-XXXXXXXXXX"
+            "value": "G-FCRNWLY41Q"
           }
         ]
       },
@@ -171,7 +173,9 @@
             "value": "{{GA4 Measurement ID}}"
           }
         ],
-        "firingTriggerId": ["2147479573"],
+        "firingTriggerId": [
+          "2147479573"
+        ],
         "tagFiringOption": "ONCE_PER_EVENT"
       },
       {
@@ -213,7 +217,9 @@
             ]
           }
         ],
-        "firingTriggerId": ["10"],
+        "firingTriggerId": [
+          "10"
+        ],
         "tagFiringOption": "ONCE_PER_EVENT"
       },
       {
@@ -255,7 +261,9 @@
             ]
           }
         ],
-        "firingTriggerId": ["11"],
+        "firingTriggerId": [
+          "11"
+        ],
         "tagFiringOption": "ONCE_PER_EVENT"
       },
       {
@@ -297,7 +305,9 @@
             ]
           }
         ],
-        "firingTriggerId": ["12"],
+        "firingTriggerId": [
+          "12"
+        ],
         "tagFiringOption": "ONCE_PER_EVENT"
       }
     ]
