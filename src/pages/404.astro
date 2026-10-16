@@ -7,7 +7,6 @@ import {
   LOCALES,
   localizedPath,
   notFoundLanguageScript,
-  SITE_BASE,
   trackingProps,
 } from '@utils';
 
@@ -49,5 +48,5 @@ const title = getTranslations(DEFAULT_LOCALE, 'not-found').title;
       </a>
     </section>
   ))}
-  <script is:inline set:html={notFoundLanguageScript({ locales: LOCALES, base: SITE_BASE })} />
+  <script is:inline set:html={notFoundLanguageScript(LOCALES)} />
 </BaseLayout>

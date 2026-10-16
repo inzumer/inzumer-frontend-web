@@ -33,10 +33,9 @@ const inlineScriptHashes = [
       storageKey: SETTINGS_STORAGE_KEY,
       locales: LOCALES,
       fallbackLocale: DEFAULT_LOCALE,
-      base: '',
     }),
   ),
-  sha256(notFoundLanguageScript({ locales: LOCALES, base: '' })),
+  sha256(notFoundLanguageScript(LOCALES)),
 ];
 
 /** @type {Exclude<NonNullable<NonNullable<import('astro').AstroUserConfig['security']>['csp']>, boolean>} */

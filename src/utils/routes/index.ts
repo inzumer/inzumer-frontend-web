@@ -1,10 +1,1 @@
-export {
-  canonicalPath,
-  isActivePath,
-  localizedPath,
-  SITE_BASE,
-  stripBase,
-  switchLocalePath,
-  withBase,
-  type RouteName,
-} from './routes';
+export { canonicalPath, localizedPath, switchLocalePath, type RouteName } from './routes';
