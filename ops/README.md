@@ -6,26 +6,18 @@ repeated and reviewed.
 ## Google Tag Manager + GA4
 
 The site loads the container `GTM-5Z7WHKZT` only after the visitor accepts analytics, and pushes no
-events: everything is measured from the element ids (see README → Analytics).
+events: everything is measured from the element ids (see README → Analytics). The container is
+configured by hand in Tag Manager (no import file); GA4 property _inzumer.com_, measurement id
+`G-FCRNWLY41Q`.
 
-1. **GA4**: create the property _inzumer.com_ with a web data stream for `https://www.inzumer.com` and
-   copy its measurement id (`G-…`).
-2. **Container file**: `node ops/gtm/build-container.mjs G-XXXXXXX` writes
-   `ops/gtm/inzumer-gtm-container.json` with:
-   - the variables `GA4 Measurement ID` and `Tracking ID` (the closest element with an id);
-   - the triggers _Clicks - tracked ids_, _Contact - sent_ and _Contact - failed_;
-   - the tags _Google tag - GA4_, `ui_click`, `generate_lead` and `contact_error`.
-3. **Import**: Tag Manager → Admin → _Import container_ → choose the file → workspace _Default_ →
-   **Merge** → _Rename conflicting tags, triggers and variables_. Review the summary, then **Preview**
-   on www.inzumer.com (accept analytics in the banner) and **Submit** to publish.
-4. **GA4**:
-   - Admin → _Custom definitions_ → _Create custom dimension_: name _Element id_, scope _Event_,
-     parameter `element_id`. Do the same for `form`.
-   - Admin → _Events_ → mark `generate_lead` as a **key event** when it shows up.
-   - Enhanced measurement (in the data stream) records the CV download as `file_download`.
-
-If the import complains about a field, open the file, fix that entry and import again; the
-generator keeps it reproducible.
+- **Variables**: constant `GA4 Measurement ID`; custom JavaScript `Tracking ID` (the id of the
+  closest clicked element that has one); built-in `Click Element`.
+- **Triggers**: _Clicks - tracked ids_ (all elements, `Tracking ID` matches `-(button|link|switch)-`),
+  _Contact - sent_ (element visibility, id `contact-status-success`) and _Contact - failed_
+  (`contact-status-error`).
+- **Tags**: _Google tag - GA4_ (initialization), `ui_click` (`element_id`), `generate_lead` and
+  `contact_error` (`form` = contact).
+- **GA4**: custom event dimensions `element_id` and `form`; `generate_lead` as a key event.
 
 ## Sentry
 
