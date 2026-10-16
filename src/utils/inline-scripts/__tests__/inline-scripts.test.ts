@@ -49,43 +49,42 @@ describe('inline scripts', () => {
     vi.unstubAllGlobals();
   });
 
-  it('should redirect to the saved language, then the browser language, under the base', () => {
+  it('should redirect to the saved language, then the browser language', () => {
     const replace = vi.fn();
     vi.stubGlobal('location', { replace });
     const options = {
       storageKey: 'inzumer:settings',
       locales: ['es', 'en'],
       fallbackLocale: 'es',
-      base: '/site',
     };
 
     localStorage.setItem('inzumer:settings', JSON.stringify({ locale: 'en' }));
     run(languageRedirectScript(options));
-    expect(replace).toHaveBeenLastCalledWith('/site/en');
+    expect(replace).toHaveBeenLastCalledWith('/en');
 
     localStorage.clear();
     vi.stubGlobal('navigator', { languages: ['fr-FR', 'en-US'], language: 'fr' });
-    run(languageRedirectScript({ ...options, base: '' }));
+    run(languageRedirectScript(options));
     expect(replace).toHaveBeenLastCalledWith('/en');
 
     vi.stubGlobal('navigator', { languages: [], language: 'de' });
     localStorage.setItem('inzumer:settings', '{broken');
     run(languageRedirectScript(options));
-    expect(replace).toHaveBeenLastCalledWith('/site/es');
+    expect(replace).toHaveBeenLastCalledWith('/es');
   });
 
-  it('should show the 404 message in the language of the requested URL, under the base', () => {
+  it('should show the 404 message in the language of the requested URL', () => {
     document.body.innerHTML =
       '<section data-not-found="es"></section><section data-not-found="en" hidden></section>';
     const [es, en] = document.querySelectorAll<HTMLElement>('[data-not-found]');
-    const script = notFoundLanguageScript({ locales: ['es', 'en'], base: '/site' });
+    const script = notFoundLanguageScript(['es', 'en']);
 
-    window.history.replaceState(null, '', '/site/en/missing');
+    window.history.replaceState(null, '', '/en/missing');
     run(script);
     expect(document.documentElement.lang).toBe('en');
     expect([es?.hidden, en?.hidden]).toStrictEqual([true, false]);
 
-    window.history.replaceState(null, '', '/site/unknown');
+    window.history.replaceState(null, '', '/unknown');
     document.documentElement.lang = 'es';
     run(script);
     expect(document.documentElement.lang).toBe('es');
