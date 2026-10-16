@@ -1,1 +1,1 @@
-export { localeIdPaths, localePaths } from './static-paths';
+export { localePaths } from './static-paths';
