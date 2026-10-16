@@ -1,6 +1,5 @@
 export * from './atoms/Icons';
 export * from './atoms/LoaderMark';
-export * from './molecules/CarouselArrows';
 export * from './molecules/ProjectGallery';
 export * from './molecules/SectionHeader';
 export * from './molecules/ServiceCard';

@@ -11,8 +11,6 @@ const projects = [
 const labels = {
   list: 'Elige un proyecto',
   view: 'Ver proyecto',
-  previous: 'Proyecto anterior',
-  next: 'Proyecto siguiente',
   dialog: dialogLabels,
 };
 
@@ -58,20 +56,13 @@ describe('ProjectShowcase', () => {
     expect(screen.getByRole('tab', { name: 'Payments' })).toHaveFocus();
   });
 
-  it('should select with a click and loop with the arrows', async () => {
+  it('should select with a click', async () => {
     const user = userEvent.setup();
     render(<ProjectShowcase title="Proyectos" projects={projects} labels={labels} />);
 
     await user.click(screen.getByRole('tab', { name: 'Belo' }));
     expect(screen.getByRole('heading', { level: 3, name: 'Belo title' })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Belo cover' })).toHaveAttribute('loading', 'lazy');
-
-    await user.click(screen.getByRole('button', { name: 'Proyecto siguiente' }));
-    expect(screen.getByRole('tab', { name: 'Coupons' })).toHaveAttribute('aria-selected', 'true');
-    await user.click(screen.getByRole('button', { name: 'Proyecto siguiente' }));
-    expect(screen.getByRole('tab', { name: 'Payments' })).toHaveAttribute('aria-selected', 'true');
-    await user.click(screen.getByRole('button', { name: 'Proyecto anterior' }));
-    expect(screen.getByRole('tab', { name: 'Coupons' })).toHaveAttribute('aria-selected', 'true');
   });
 
   it('should open the selected project in a dialog and close it', async () => {

@@ -50,8 +50,6 @@
     "title": "Projects",
     "listLabel": "Choose a project",
     "view": "View project",
-    "previous": "Previous project",
-    "next": "Next project",
     "dialog": {
       "close": "Close project",
       "stack": "Stack",

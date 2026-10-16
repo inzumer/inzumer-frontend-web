@@ -31,7 +31,8 @@
   },
   "carousel": {
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "goTo": "Go to service {number}"
   },
   "loader": {
     "page": "Loading the page",

@@ -1,6 +1,5 @@
 import { useId, useRef, useState, type KeyboardEvent } from 'react';
 import { Icon, RichText } from '@inzumer/ui-library';
-import { CarouselArrows } from '@components/molecules/CarouselArrows';
 import { SectionHeader } from '@components/molecules/SectionHeader';
 import {
   ProjectDialog,
@@ -20,8 +19,6 @@ export interface ProjectShowcaseProps {
   labels: {
     list: string;
     view: string;
-    previous: string;
-    next: string;
     dialog: ProjectDialogLabels;
   };
 }
@@ -73,19 +70,7 @@ export const ProjectShowcase = ({ title, projects, labels }: ProjectShowcaseProp
 
   return (
     <section aria-labelledby={titleId} className="flex flex-col gap-12">
-      <SectionHeader
-        id={titleId}
-        title={title}
-        actions={
-          <CarouselArrows
-            scope="projects"
-            labels={{ previous: labels.previous, next: labels.next }}
-            controls={panelId}
-            onPrevious={() => select((active - 1 + total) % total)}
-            onNext={() => select((active + 1) % total)}
-          />
-        }
-      />
+      <SectionHeader id={titleId} title={title} />
       <div className="grid gap-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:items-center lg:gap-12">
         <div
           role="tablist"
