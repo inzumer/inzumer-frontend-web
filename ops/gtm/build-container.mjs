@@ -1,5 +1,6 @@
 // Writes ops/gtm/inzumer-gtm-container.json: the Tag Manager setup to import (Admin → Import container → Merge).
 // Usage: node ops/gtm/build-container.mjs G-XXXXXXX
+import { execFileSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
@@ -133,4 +134,6 @@ const container = {
 
 const out = fileURLToPath(new URL('./inzumer-gtm-container.json', import.meta.url));
 writeFileSync(out, `${JSON.stringify(container, null, 2)}\n`);
+// Keep the file as `pnpm format:check` expects it.
+execFileSync('pnpm', ['exec', 'prettier', '--write', out], { shell: true, stdio: 'ignore' });
 console.log(`Written ${out} with ${measurementId}`);
