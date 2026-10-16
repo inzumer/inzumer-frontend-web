@@ -1,7 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import { Icon, RichText } from '@inzumer/ui-library';
+import { RichText } from '@inzumer/ui-library';
 import { isServiceIconName } from '@components/atoms/Icons';
 import { SectionHeader } from '@components/molecules/SectionHeader';
 import { ContactForm } from '@components/organisms/ContactForm';
@@ -18,7 +18,6 @@ import {
   personSchema,
   projectsFor,
   projectSlug,
-  trackingProps,
   type Locale,
 } from '@utils';
 
@@ -28,7 +27,6 @@ const lang = Astro.params.lang as Locale;
 const common = getTranslations(lang, 'common');
 const home = getTranslations(lang, 'home');
 const profile = getTranslations(lang, 'profile');
-const cv = getTranslations(lang, 'cv');
 
 const projects = await Promise.all(
   projectsFor(await getCollection('projects'), lang).map(async ({ id, data, rendered }) => {
@@ -104,15 +102,6 @@ const homeHref = localizedPath(lang, 'home');
           </RichText>
         ))}
       </div>
-      <a
-        {...trackingProps('about', 'link', 'cv')}
-        href={`/${lang}/cv.pdf`}
-        download={cv.fileName}
-        class="inline-flex min-h-11 w-fit items-center gap-3 rounded-full border border-(--border-strong) px-6 text-[1.3rem] font-medium transition-colors hover:bg-(--btn-ghost-bg-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-focus) motion-reduce:transition-none"
-      >
-        {cv.download}
-        <Icon name="arrow-forward" size="sm" className="rotate-90" />
-      </a>
     </section>
 
     <div id="services" class="scroll-mt-16">

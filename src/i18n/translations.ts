@@ -3,8 +3,6 @@ import commonEn from './common/en.json';
 import commonEs from './common/es.json';
 import contactEmailEn from './contact-email/en.json';
 import contactEmailEs from './contact-email/es.json';
-import cvEn from './cv/en.json';
-import cvEs from './cv/es.json';
 import homeEn from './home/en.json';
 import homeEs from './home/es.json';
 import notFoundEn from './not-found/en.json';
@@ -19,7 +17,6 @@ import projectPageEs from './project-page/es.json';
 /** `src/i18n/<folder>/{es,en}.json`; English is the source and Spanish must match its shape. */
 const dictionaries = {
   common: { en: commonEn, es: commonEs satisfies typeof commonEn },
-  cv: { en: cvEn, es: cvEs satisfies typeof cvEn },
   'contact-email': { en: contactEmailEn, es: contactEmailEs satisfies typeof contactEmailEn },
   home: { en: homeEn, es: homeEs satisfies typeof homeEn },
   'not-found': { en: notFoundEn, es: notFoundEs satisfies typeof notFoundEn },
