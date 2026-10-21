@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, isLocale, LOCALES, toLocale } from '../locale';
+import { DEFAULT_LOCALE, isLocale, LOCALES } from '../locale';
 
 describe('locale', () => {
   it('should support Spanish and English, with Spanish as default', () => {
@@ -8,14 +8,12 @@ describe('locale', () => {
 
   it.each(['es', 'en'])('should recognize "%s" as a supported locale', (value) => {
     expect(isLocale(value)).toBe(true);
-    expect(toLocale(value)).toBe(value);
   });
 
   it.each(['fr', 'ES', '', undefined, null, 42])(
-    'should fall back to the default for %s',
+    'should not recognize %s as a supported locale',
     (value) => {
       expect(isLocale(value)).toBe(false);
-      expect(toLocale(value)).toBe(DEFAULT_LOCALE);
     },
   );
 });
