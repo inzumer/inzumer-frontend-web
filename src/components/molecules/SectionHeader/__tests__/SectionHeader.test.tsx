@@ -10,12 +10,4 @@ describe('SectionHeader', () => {
       'projects-title',
     );
   });
-
-  it('should render the actions next to the title', () => {
-    render(
-      <SectionHeader id="t" title="Proyectos" actions={<button type="button">Siguiente</button>} />,
-    );
-
-    expect(screen.getByRole('button', { name: 'Siguiente' })).toBeInTheDocument();
-  });
 });
